@@ -1,100 +1,211 @@
-// import { useDispatch, useSelector } from 'react-redux';
-// import { Outlet } from 'react-router-dom';
+import { useState, useCallback, useEffect } from 'react';
+import { shallow } from 'zustand/shallow';
 
-// material-ui
-// import { styled, useTheme } from '@mui/material/styles';
-// import { AppBar, Box, CssBaseline, Toolbar, useMediaQuery } from '@mui/material';
+// Material UI
+import {
+  Drawer,
+  Fab,
+  FormControl,
+  FormControlLabel,
+  Grid,
+  IconButton,
+  RadioGroup,
+  Radio,
+  Slider,
+  Tooltip,
+  Typography,
+} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+// import { IconSettings } from '@tabler/icons';
+
+// Stores
+import { useGeneralCustomizationStore } from '../../stores/useGeneralCustomizationStore';
 
 // project imports
-// import Breadcrumbs from 'ui-component/extended/Breadcrumbs';
-// import Header from './Header';
-// import Sidebar from './Sidebar';
-// import Customization from '../Customization';
-// import navigation from 'menu-items';
-// import { drawerWidth } from 'store/constant';
-// import { SET_MENU } from 'store/actions';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
-// assets
-// import { IconChevronRight } from '@tabler/icons-react';
+// concat 'px'
+function valueText(value: number) {
+  return `${value}px`;
+}
 
-// styles
-// const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
-//   ...theme.typography.mainContent,
-//   borderBottomLeftRadius: 0,
-//   borderBottomRightRadius: 0,
-//   transition: theme.transitions.create(
-//     'margin',
-//     open
-//       ? {
-//           easing: theme.transitions.easing.easeOut,
-//           duration: theme.transitions.duration.enteringScreen,
-//         }
-//       : {
-//           easing: theme.transitions.easing.sharp,
-//           duration: theme.transitions.duration.leavingScreen,
-//         },
-//   ),
-//   [theme.breakpoints.up('md')]: {
-//     marginLeft: open ? 0 : -(drawerWidth - 20),
-//     width: `calc(100% - ${drawerWidth}px)`,
-//   },
-//   [theme.breakpoints.down('md')]: {
-//     marginLeft: '20px',
-//     width: `calc(100% - ${drawerWidth}px)`,
-//     padding: '16px',
-//   },
-//   [theme.breakpoints.down('sm')]: {
-//     marginLeft: '10px',
-//     width: `calc(100% - ${drawerWidth}px)`,
-//     padding: '16px',
-//     marginRight: '10px',
-//   },
-// }));
+// ==============================|| LIVE CUSTOMIZATION ||============================== //
 
-// ==============================|| MAIN LAYOUT ||============================== //
+export const MainContainer = () => {
+  const theme = useTheme();
+  const { currentFontFamily, borderRadius, opened, setCurrentFontFamily, setBorderRadius } =
+    useGeneralCustomizationStore(
+      (state) => ({
+        currentFontFamily: state.fontFamily,
+        borderRadius: state.borderRadius,
+        opened: state.opened,
+        setCurrentFontFamily: state.setFontFamily,
+        setBorderRadius: state.setBorderRadius,
+      }),
+      shallow,
+    );
 
-const MainLayout = () => {
-  return <h3>Main Layout</h3>;
-  // const theme = useTheme();
-  // const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
-  // // Handle left drawer
-  // const leftDrawerOpened = useSelector((state) => state.customization.opened);
-  // const dispatch = useDispatch();
-  // const handleLeftDrawerToggle = () => {
-  //   dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
-  // };
+  console.log(currentFontFamily);
+  console.log(borderRadius);
+  console.log(opened);
 
-  // return (
-  //   <Box sx={{ display: 'flex' }}>
-  //     <CssBaseline />
-  //     {/* header */}
-  //     <AppBar
-  //       enableColorOnDark
-  //       position="fixed"
-  //       color="inherit"
-  //       elevation={0}
-  //       sx={{
-  //         bgcolor: theme.palette.background.default,
-  //         transition: leftDrawerOpened ? theme.transitions.create('width') : 'none',
-  //       }}
-  //     >
-  //       <Toolbar>
-  //         <Header handleLeftDrawerToggle={handleLeftDrawerToggle} />
-  //       </Toolbar>
-  //     </AppBar>
+  // drawer on/off
+  const [open, setOpen] = useState<boolean>(false);
+  const handleToggle = useCallback(() => setOpen(!open), [open]);
 
-  //     {/* drawer */}
-  //     <Sidebar drawerOpen={!matchDownMd ? leftDrawerOpened : !leftDrawerOpened} drawerToggle={handleLeftDrawerToggle} />
+  const handleBorderRadius = (_event: Event, newValue: number | number[]) => setBorderRadius(newValue as number);
 
-  //     {/* main content */}
-  //     <Main theme={theme} open={leftDrawerOpened}>
-  //       {/* breadcrumb */}
-  //       <Breadcrumbs separator={IconChevronRight} navigation={navigation} icon title rightAlign />
-  //       <Outlet />
-  //     </Main>
-  //     <Customization />
-  //   </Box>
-  // );
+  let initialFont;
+  switch (currentFontFamily) {
+    case `'Inter', sans-serif`:
+      initialFont = 'Inter';
+      break;
+    case `'Poppins', sans-serif`:
+      initialFont = 'Poppins';
+      break;
+    case `'Roboto', sans-serif`:
+    default:
+      initialFont = 'Roboto';
+      break;
+  }
+
+  // // state - font family
+  const [fontFamily, setFontFamily] = useState(initialFont);
+
+  useEffect(() => {
+    let newFont;
+    switch (fontFamily) {
+      case 'Inter':
+        newFont = `'Inter', sans-serif`;
+        break;
+      case 'Poppins':
+        newFont = `'Poppins', sans-serif`;
+        break;
+      case 'Roboto':
+      default:
+        newFont = `'Roboto', sans-serif`;
+        break;
+    }
+    setCurrentFontFamily(newFont);
+  }, [setCurrentFontFamily, fontFamily]);
+
+  return (
+    <>
+      {/* toggle button */}
+      <Tooltip title="Live Customize">
+        <Fab
+          component="div"
+          onClick={handleToggle}
+          size="medium"
+          variant="circular"
+          color="secondary"
+          sx={{
+            borderRadius: 0,
+            borderTopLeftRadius: '50%',
+            borderBottomLeftRadius: '50%',
+            borderTopRightRadius: '50%',
+            borderBottomRightRadius: '4px',
+            top: '25%',
+            position: 'fixed',
+            right: 10,
+            zIndex: theme.zIndex.speedDial,
+          }}
+        >
+          {/* <SettingsIcon /> */}
+          hola
+          <IconButton color="inherit" size="large" disableRipple></IconButton>
+        </Fab>
+      </Tooltip>
+
+      <Drawer
+        anchor="right"
+        onClose={handleToggle}
+        open={open}
+        PaperProps={{
+          sx: {
+            width: 280,
+          },
+        }}
+      >
+        <PerfectScrollbar component="div">
+          <Grid container spacing={3} sx={{ p: 3 }}>
+            <Grid item xs={12}>
+              font family
+              <FormControl>
+                <RadioGroup
+                  aria-label="font-family"
+                  value={fontFamily}
+                  onChange={(e) => setFontFamily(e.target.value)}
+                  name="row-radio-buttons-group"
+                >
+                  <FormControlLabel
+                    value="Roboto"
+                    control={<Radio />}
+                    label="Roboto"
+                    sx={{
+                      '& .MuiSvgIcon-root': { fontSize: 28 },
+                      '& .MuiFormControlLabel-label': { color: theme.palette.grey[900] },
+                    }}
+                  />
+                  <FormControlLabel
+                    value="Poppins"
+                    control={<Radio />}
+                    label="Poppins"
+                    sx={{
+                      '& .MuiSvgIcon-root': { fontSize: 28 },
+                      '& .MuiFormControlLabel-label': { color: theme.palette.grey[900] },
+                    }}
+                  />
+                  <FormControlLabel
+                    value="Inter"
+                    control={<Radio />}
+                    label="Inter"
+                    sx={{
+                      '& .MuiSvgIcon-root': { fontSize: 28 },
+                      '& .MuiFormControlLabel-label': { color: theme.palette.grey[900] },
+                    }}
+                  />
+                </RadioGroup>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12}>
+              {/* border radius */}
+              <Grid item xs={12} container spacing={2} alignItems="center" sx={{ mt: 2.5 }}>
+                <Grid item>
+                  <Typography variant="h6" color="secondary">
+                    4px
+                  </Typography>
+                </Grid>
+                <Grid item xs>
+                  <Slider
+                    size="small"
+                    value={borderRadius}
+                    onChange={handleBorderRadius}
+                    getAriaValueText={valueText}
+                    valueLabelDisplay="on"
+                    aria-labelledby="discrete-slider-small-steps"
+                    marks
+                    step={2}
+                    min={4}
+                    max={24}
+                    color="secondary"
+                    sx={{
+                      '& .MuiSlider-valueLabel': {
+                        color: 'secondary.light',
+                      },
+                    }}
+                  />
+                </Grid>
+                <Grid item>
+                  <Typography variant="h6" color="secondary">
+                    24px
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </PerfectScrollbar>
+      </Drawer>
+    </>
+  );
 };
-
-export default MainLayout;
