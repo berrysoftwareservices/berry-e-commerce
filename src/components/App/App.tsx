@@ -1,14 +1,14 @@
 import { CssBaseline } from '@mui/material';
 import './App.css';
 import NavigationScroll from '../../utils/NavigationScroll';
-import { MainContainer } from '../MainContainer/MainContainer';
+import { AppRoutes } from '../Routes/Routes';
 
 function App() {
   return (
     <>
       <CssBaseline />
       <NavigationScroll>
-        <MainContainer />
+        <AppRoutes />
       </NavigationScroll>
     </>
   );
