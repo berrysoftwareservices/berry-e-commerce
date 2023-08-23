@@ -1,22 +1,40 @@
-import { CssBaseline } from '@mui/material';
+import { useMemo } from 'react';
+import { shallow } from 'zustand/shallow';
+
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import './App.css';
 import NavigationScroll from '../../utils/NavigationScroll';
 import { AppRoutes } from '../Routes/Routes';
+import { theme } from '../../themes';
 
-// defaultTheme
-// import {themes} from 'themes';
+import { useGeneralCustomizationStore } from '../../stores/useGeneralCustomizationStore';
 
 function App() {
-  // TODO: get this from zustand (Aderlin)
-  // const customization = useSelector((state) => state.customization);
+  const { fontFamily, borderRadius, opened } = useGeneralCustomizationStore(
+    (state) => ({
+      fontFamily: state.fontFamily,
+      borderRadius: state.borderRadius,
+      opened: state.opened,
+    }),
+    shallow,
+  );
+  const customization = useMemo(
+    () => ({
+      fontFamily,
+      borderRadius,
+      opened,
+    }),
+    [fontFamily, borderRadius, opened],
+  );
+
   return (
     <>
-      {/* <ThemeProvider theme={themes(customization)}> */}
-      <CssBaseline />
-      <NavigationScroll>
-        <AppRoutes />
-      </NavigationScroll>
-      {/* </ThemeProvider> */}
+      <ThemeProvider theme={theme(customization)}>
+        <CssBaseline />
+        <NavigationScroll>
+          <AppRoutes />
+        </NavigationScroll>
+      </ThemeProvider>
     </>
   );
 }

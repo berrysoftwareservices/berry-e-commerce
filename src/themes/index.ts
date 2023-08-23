@@ -2,7 +2,7 @@
 import { createTheme } from '@mui/material/styles';
 
 // assets
-import colors from 'assets/scss/_themes-vars.module.scss';
+// import colors from 'assets/scss/_themes-vars.module.scss';
 
 // project imports
 import componentStyleOverrides from './compStyleOverride';
@@ -16,27 +16,24 @@ import themeTypography from './typography';
 
 // TODO: remove any prop type (Irving)
 export const theme = (customization: any) => {
-  const color = colors;
-
   const themeOption = {
-    colors: color,
-    heading: color.grey900,
-    paper: color.paper,
-    backgroundDefault: color.paper,
-    background: color.primaryLight,
-    darkTextPrimary: color.grey700,
-    darkTextSecondary: color.grey500,
-    textDark: color.grey900,
-    menuSelected: color.secondaryDark,
-    menuSelectedBack: color.secondaryLight,
-    divider: color.grey200,
+    heading: '#121926',
+    paper: '#ffffff',
+    backgroundDefault: '#ffffff',
+    background: '#eef2f6',
+    darkTextPrimary: '#364152',
+    darkTextSecondary: '#697586',
+    textDark: '#121926',
+    menuSelected: '#5e35b1',
+    menuSelectedBack: '#ede7f6',
+    divider: '#e3e8ef',
     customization,
   };
 
   // TODO: remove any prop type (Irving)
   const themeOptions: any = {
     direction: 'ltr',
-    palette: themePalette(themeOption),
+    palette: themePalette(),
     mixins: {
       toolbar: {
         minHeight: '48px',
@@ -48,11 +45,9 @@ export const theme = (customization: any) => {
     },
     typography: themeTypography(themeOption),
   };
-
+  console.log(themeOptions);
   const themes = createTheme(themeOptions);
   themes.components = componentStyleOverrides(themeOption);
 
   return themes;
 };
-
-export default theme;
