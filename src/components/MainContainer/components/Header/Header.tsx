@@ -6,8 +6,8 @@ import { Avatar, Box, ButtonBase } from '@mui/material';
 
 // Custom Components
 import { SearchSection } from './components/SearchSection/SearchSection';
+import NotificationSection from './components/NotificationSection/NotificationSection';
 // import ProfileSection from './ProfileSection';
-// import NotificationSection from './NotificationSection';
 
 // // assets
 // import { IconMenu2 } from '@tabler/icons';
@@ -64,8 +64,8 @@ export const Header: FC<HeaderProps> = ({ handleLeftDrawerToggle }) => {
       <Box sx={{ flexGrow: 1 }} />
 
       {/* notification & profile */}
-      {/* <NotificationSection />
-      <ProfileSection /> */}
+      <NotificationSection />
+      {/* <ProfileSection /> */}
     </>
   );
 };
