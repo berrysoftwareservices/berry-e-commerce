@@ -1,11 +1,11 @@
 import { FC } from 'react';
 
-// material-ui
+// Material UI
 import { useTheme } from '@mui/material/styles';
 import { Avatar, Box, ButtonBase } from '@mui/material';
 
-// project imports
-// import SearchSection from './SearchSection';
+// Custom Components
+import { SearchSection } from './components/SearchSection/SearchSection';
 // import ProfileSection from './ProfileSection';
 // import NotificationSection from './NotificationSection';
 
@@ -59,7 +59,7 @@ export const Header: FC<HeaderProps> = ({ handleLeftDrawerToggle }) => {
       </Box>
 
       {/* header search */}
-      {/* <SearchSection /> */}
+      <SearchSection />
       <Box sx={{ flexGrow: 1 }} />
       <Box sx={{ flexGrow: 1 }} />
 
