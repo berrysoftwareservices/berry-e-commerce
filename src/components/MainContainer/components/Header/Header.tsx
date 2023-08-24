@@ -6,7 +6,8 @@ import { Avatar, Box, ButtonBase } from '@mui/material';
 
 // Custom Components
 import { SearchSection } from './components/SearchSection/SearchSection';
-import NotificationSection from './components/NotificationSection/NotificationSection';
+import { NotificationSection } from './components/NotificationSection/NotificationSection';
+import { LogoSection } from '../LogoSection/LogoSection';
 import { ProfileSection } from './components/ProfileSection/ProfileSection';
 
 // // assets
@@ -32,8 +33,7 @@ export const Header: FC<HeaderProps> = ({ handleLeftDrawerToggle }) => {
         }}
       >
         <Box component="span" sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }}>
-          {/* <LogoSection /> TODO: migrate this component (Aderlin)*/}
-          Logo
+          <LogoSection />
         </Box>
         <ButtonBase sx={{ borderRadius: '12px', overflow: 'hidden' }}>
           <Avatar

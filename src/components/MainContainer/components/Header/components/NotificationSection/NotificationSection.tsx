@@ -52,7 +52,7 @@ const status = [
 
 // ==============================|| NOTIFICATION ||============================== //
 
-const NotificationSection = () => {
+export const NotificationSection = () => {
   const theme = useTheme();
   const matchesXs = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -218,5 +218,3 @@ const NotificationSection = () => {
     </>
   );
 };
-
-export default NotificationSection;
