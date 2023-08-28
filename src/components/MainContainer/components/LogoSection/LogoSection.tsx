@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 // material-ui
 import { ButtonBase } from '@mui/material';
 
-// project imports
+// Custom Components
 import { Logo } from '../../../Logo/Logo';
 
 export const LogoSection = () => {

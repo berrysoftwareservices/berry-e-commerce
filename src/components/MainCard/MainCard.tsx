@@ -40,10 +40,10 @@ export const MainCard: FC<MainCardProps> = forwardRef(
       title,
       ...others
     },
-    // ref,
+    ref,
   ) => {
+    console.log(ref);
     // const theme = useTheme();
-
     return (
       <Card
         // ref={ref}

@@ -1,5 +1,5 @@
 // Material UI
-import { AppBar, Box, Toolbar } from '@mui/material';
+import { AppBar, Box, Toolbar, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 // Hooks
@@ -7,6 +7,7 @@ import { useTheme } from '@mui/material/styles';
 // Custom Components
 import { Customization } from './components/Customization/Customization';
 import { Header } from './components/Header/Header';
+import { Sidebar } from './components/Sidebar/Sidebar';
 
 // Custom Hooks
 
@@ -29,6 +30,10 @@ export const MainContainer = () => {
   //   dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
   // };
 
+  const handleLeftDrawerToggle = () => {};
+  const leftDrawerOpened = true;
+  const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <Box sx={{ display: 'flex' }}>
       <AppBar
@@ -46,6 +51,7 @@ export const MainContainer = () => {
           <Header handleLeftDrawerToggle={() => {}} />
         </Toolbar>
       </AppBar>
+      <Sidebar drawerOpen={!matchDownMd ? leftDrawerOpened : !leftDrawerOpened} drawerToggle={handleLeftDrawerToggle} />
       <Customization />
     </Box>
   );

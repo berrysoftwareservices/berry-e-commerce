@@ -21,7 +21,7 @@ import { useTheme } from '@mui/material/styles';
 // Stores
 import { useGeneralCustomizationStore } from '../../../../stores/useGeneralCustomizationStore';
 
-// project imports
+// Custom Components
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 // concat 'px'
