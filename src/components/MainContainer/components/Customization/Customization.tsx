@@ -136,8 +136,7 @@ export const Customization = () => {
             sx={{ p: 3 }}
           >
             <Grid item xs={12}>
-              {/* font family */}
-              <SubCard title="Font Family" darkTitle content>
+              <SubCard title="Font Family" darkTitle content contentSX={{ marginLeft: '12px', marginTop: '12px' }}>
                 <FormControl>
                   <RadioGroup
                     aria-label="font-family"
@@ -176,9 +175,9 @@ export const Customization = () => {
                 </FormControl>
               </SubCard>
             </Grid>
-            <Grid item xs={12}>
-              <SubCard title="Border Radius" darkTitle content>
-                <Grid item xs={12} container spacing={2} alignItems="center" sx={{ mt: 2.5 }}>
+            <Grid item xs={12} mt={2.5}>
+              <SubCard title="Border Radius" darkTitle content contentSX={{ marginLeft: '12px', marginTop: '12px' }}>
+                <Grid item xs={12} container spacing={2} alignItems="center" sx={{ marginTop: 2.5 }}>
                   <Grid item>
                     <Typography variant="h6" color="secondary">
                       4px
