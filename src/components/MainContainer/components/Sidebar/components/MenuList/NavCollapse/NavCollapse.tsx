@@ -6,8 +6,8 @@ import { shallow } from 'zustand/shallow';
 
 // Material UI
 import { useTheme } from '@mui/material/styles';
-import { Collapse, List, ListItemButton, ListItemText, Typography } from '@mui/material';
-// import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import { Collapse, List, ListItemButton, ListItemText, ListItemIcon, Typography } from '@mui/material';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 // Custom Components
 import { NavItem } from '../NavItem/NavItem';
@@ -104,20 +104,20 @@ export const NavCollapse: FC<NavCollapseProps> = ({ menu, level }) => {
     }
   });
 
-  // const Icon = () => menu.icon;
-  // const menuIcon = menu.icon ? (
-  //   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //   // @ts-ignore
-  //   <Icon strokeWidth={1.5} size="1.3rem" style={{ marginTop: 'auto', marginBottom: 'auto' }} />
-  // ) : (
-  //   <FiberManualRecordIcon
-  //     sx={{
-  //       width: selected === menu.id ? 8 : 6,
-  //       height: selected === menu.id ? 8 : 6,
-  //     }}
-  //     fontSize={level > 0 ? 'inherit' : 'medium'}
-  //   />
-  // );
+  const Icon = menu.icon;
+  const menuIcon = menu.icon ? (
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    <Icon stroke={1.5} size="1.3rem" />
+  ) : (
+    <FiberManualRecordIcon
+      sx={{
+        width: selected === menu.id ? 8 : 6,
+        height: selected === menu.id ? 8 : 6,
+      }}
+      fontSize={level > 0 ? 'inherit' : 'medium'}
+    />
+  );
 
   return (
     <>
@@ -133,7 +133,7 @@ export const NavCollapse: FC<NavCollapseProps> = ({ menu, level }) => {
         selected={selected === menu.id}
         onClick={handleClick}
       >
-        {/* <ListItemIcon sx={{ my: 'auto', minWidth: !menu.icon ? 18 : 36 }}>{menuIcon}</ListItemIcon>  */}
+        <ListItemIcon sx={{ my: 'auto', minWidth: !menu.icon ? 18 : 36 }}>{menuIcon}</ListItemIcon>
         <ListItemText
           primary={
             <Typography variant={selected === menu.id ? 'h5' : 'body1'} color="inherit" sx={{ my: 'auto' }}>

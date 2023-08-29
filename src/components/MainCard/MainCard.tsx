@@ -3,12 +3,12 @@ import { forwardRef, FC } from 'react';
 // Material UI
 // import { useTheme } from '@mui/material/styles';
 // import { Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
-import { Card, CardContent, Divider } from '@mui/material';
+import { Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
 
 // constant
-// const headerSX = {
-//   '& .MuiCardHeader-action': { mr: 0 },
-// };
+const headerSX = {
+  '& .MuiCardHeader-action': { mr: 0 },
+};
 
 interface MainCardProps {
   border?: boolean;
@@ -18,10 +18,10 @@ interface MainCardProps {
   contentClass?: string;
   contentSX?: object;
   darkTitle?: boolean;
-  secondary?: JSX.Element | string | object;
+  secondary?: JSX.Element;
   shadow?: string;
   sx?: object;
-  title?: JSX.Element | string | object;
+  title?: string;
 }
 
 export const MainCard: FC<MainCardProps> = forwardRef(
@@ -33,8 +33,8 @@ export const MainCard: FC<MainCardProps> = forwardRef(
       content = true,
       contentClass = '',
       contentSX = {},
-      // darkTitle,
-      // secondary,
+      darkTitle,
+      secondary,
       shadow,
       sx = {},
       title,
@@ -46,7 +46,7 @@ export const MainCard: FC<MainCardProps> = forwardRef(
     // const theme = useTheme();
     return (
       <Card
-        // ref={ref}
+        //ref={ref}
         {...others}
         sx={{
           border: border ? '1px solid' : 'none',
@@ -57,20 +57,16 @@ export const MainCard: FC<MainCardProps> = forwardRef(
           ...sx,
         }}
       >
-        {/* TODO: Solve this */}
-        {/* card header and action */}
-        {/* {title && (
+        {title && (
           <CardHeader
             sx={headerSX}
-            title={darkTitle ? <Typography variant="h3">{title}</Typography> : title}
+            title={darkTitle ? <Typography variant="h3">{title}</Typography> : <Typography>{title}</Typography>}
             action={secondary}
           />
-        )} */}
+        )}
 
-        {/* content & header divider */}
         {title && <Divider />}
 
-        {/* card content */}
         {content && (
           <CardContent sx={contentSX} className={contentClass}>
             {children}

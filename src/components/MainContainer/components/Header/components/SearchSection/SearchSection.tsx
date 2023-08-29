@@ -55,7 +55,7 @@ const HeaderAvatarStyle = styled(Avatar, { shouldForwardProp })(({ theme }) => (
 interface MobileSearchProps {
   value: string;
   setValue: (value: string) => void;
-  // popupState: JSX.Element;
+  // popupState: PopupState;
 }
 
 const MobileSearch: FC<MobileSearchProps> = ({ value, setValue }) => {
@@ -140,7 +140,6 @@ export const SearchSection = () => {
                         <Box sx={{ p: 2 }}>
                           <Grid container alignItems="center" justifyContent="space-between">
                             <Grid item xs>
-                              {/* TODO: solve this (Irving)*/}
                               {/* <MobileSearch value={value} setValue={setValue} popupState={popupState} /> */}
                               <MobileSearch value={value} setValue={setValue} />
                             </Grid>
