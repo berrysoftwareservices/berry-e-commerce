@@ -1,12 +1,16 @@
 import { FC } from 'react';
 import { forwardRef } from 'react';
 import { Link } from 'react-router-dom';
+import { shallow } from 'zustand/shallow';
 
 // Material UI
 // import { useTheme } from '@mui/material/styles';
 import { Avatar, Chip, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
 
 // import { MENU_OPEN, SET_MENU } from 'store/actions';
+
+// Stores
+import { useGeneralCustomizationStore } from '../../../../../../../stores/useGeneralCustomizationStore';
 
 // assets
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
@@ -44,6 +48,13 @@ export const NavItem: FC<NavItemProps> = ({ item, level }) => {
   // const { pathname } = useLocation();
   // const customization = useSelector((state) => state.customization);
   // const matchesSM = useMediaQuery(theme.breakpoints.down('lg'));
+
+  const { borderRadius } = useGeneralCustomizationStore(
+    (state) => ({
+      borderRadius: state.borderRadius,
+    }),
+    shallow,
+  );
 
   const Icon = item.icon;
   const itemIcon = item.icon ? (
@@ -97,7 +108,7 @@ export const NavItem: FC<NavItemProps> = ({ item, level }) => {
       {...listItemProps}
       // disabled={item.disabled}
       sx={{
-        // borderRadius: `${customization.borderRadius}px`,
+        borderRadius: borderRadius,
         mb: 0.5,
         alignItems: 'flex-start',
         backgroundColor: level > 1 ? 'transparent !important' : 'inherit',

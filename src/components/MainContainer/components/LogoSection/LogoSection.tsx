@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-// material-ui
+// Material UI
 import { ButtonBase } from '@mui/material';
 
 // Custom Components

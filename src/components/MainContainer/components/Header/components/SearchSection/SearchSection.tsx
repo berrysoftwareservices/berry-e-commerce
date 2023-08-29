@@ -1,12 +1,10 @@
 import { FC } from 'react';
 import { useState } from 'react';
+import PopupState, { bindPopper, bindToggle } from 'material-ui-popup-state';
 
 // Material UI
 import { useTheme, styled } from '@mui/material/styles';
 import { Avatar, Box, ButtonBase, Card, Grid, InputAdornment, OutlinedInput, Popper } from '@mui/material';
-
-// third-party
-import PopupState, { bindPopper, bindToggle } from 'material-ui-popup-state';
 
 // assets
 import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons-react';
@@ -108,8 +106,6 @@ const MobileSearch: FC<MobileSearchProps> = ({ value, setValue }) => {
     />
   );
 };
-
-// ==============================|| SEARCH INPUT ||============================== //
 
 export const SearchSection = () => {
   const theme = useTheme();

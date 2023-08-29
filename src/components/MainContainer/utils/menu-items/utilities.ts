@@ -9,8 +9,6 @@ const icons = {
   IconWindmill,
 };
 
-// ==============================|| UTILITIES MENU ITEMS ||============================== //
-
 const utilities = {
   id: 'utilities',
   title: 'Utilities',

@@ -1,9 +1,10 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { shallow } from 'zustand/shallow';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
 import { useNavigate } from 'react-router-dom';
 
-// material-ui
+// Material UI
 import { useTheme } from '@mui/material/styles';
 import {
   Avatar,
@@ -27,9 +28,6 @@ import {
   Typography,
 } from '@mui/material';
 
-// third-party
-import PerfectScrollbar from 'react-perfect-scrollbar';
-
 // project imports
 // import MainCard from 'ui-component/cards/MainCard';
 // import Transitions from 'ui-component/extended/Transitions';
@@ -39,8 +37,6 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 // assets
 // import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons';
 import { useGeneralCustomizationStore } from '../../../../../../stores/useGeneralCustomizationStore';
-
-// ==============================|| PROFILE MENU ||============================== //
 
 export const ProfileSection = () => {
   const theme = useTheme();

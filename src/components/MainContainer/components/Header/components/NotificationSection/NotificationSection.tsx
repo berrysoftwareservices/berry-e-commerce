@@ -50,8 +50,6 @@ const status = [
   },
 ];
 
-// ==============================|| NOTIFICATION ||============================== //
-
 export const NotificationSection = () => {
   const theme = useTheme();
   const matchesXs = useMediaQuery(theme.breakpoints.down('md'));

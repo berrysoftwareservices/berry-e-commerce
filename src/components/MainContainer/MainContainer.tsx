@@ -47,8 +47,7 @@ export const MainContainer = () => {
         }}
       >
         <Toolbar>
-          {/* <Header  handleLeftDrawerToggle={handleLeftDrawerToggle} /> */}
-          <Header handleLeftDrawerToggle={() => {}} />
+          <Header handleLeftDrawerToggle={handleLeftDrawerToggle} />
         </Toolbar>
       </AppBar>
       <Sidebar drawerOpen={!matchDownMd ? leftDrawerOpened : !leftDrawerOpened} drawerToggle={handleLeftDrawerToggle} />

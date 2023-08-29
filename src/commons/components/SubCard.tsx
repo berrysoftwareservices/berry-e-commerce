@@ -1,10 +1,8 @@
 import { forwardRef, FC } from 'react';
 
-// material-ui
+// Material UI
 import { useTheme } from '@mui/material/styles';
 import { Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
-
-// ==============================|| CUSTOM SUB CARD ||============================== //
 
 interface SubCardProps {
   children?: JSX.Element;

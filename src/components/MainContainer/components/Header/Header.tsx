@@ -10,8 +10,8 @@ import { NotificationSection } from './components/NotificationSection/Notificati
 import { LogoSection } from '../LogoSection/LogoSection';
 import { ProfileSection } from './components/ProfileSection/ProfileSection';
 
-// // assets
-// import { IconMenu2 } from '@tabler/icons';
+// assets
+import { IconMenu2 } from '@tabler/icons-react';
 
 interface HeaderProps {
   handleLeftDrawerToggle: () => void;
@@ -22,7 +22,6 @@ export const Header: FC<HeaderProps> = ({ handleLeftDrawerToggle }) => {
 
   return (
     <>
-      {/* logo & toggler button */}
       <Box
         sx={{
           width: 228,
@@ -53,7 +52,7 @@ export const Header: FC<HeaderProps> = ({ handleLeftDrawerToggle }) => {
             onClick={handleLeftDrawerToggle}
             color="inherit"
           >
-            {/* <IconMenu2 stroke={1.5} size="1.3rem" /> */}
+            <IconMenu2 stroke={1.5} size="1.3rem" />
           </Avatar>
         </ButtonBase>
       </Box>
@@ -65,8 +64,6 @@ export const Header: FC<HeaderProps> = ({ handleLeftDrawerToggle }) => {
 
       {/* notification & profile */}
       <NotificationSection />
-      {/* <ProfileSection /> */}
-      {/* <NotificationSection /> */}
       <ProfileSection />
     </>
   );

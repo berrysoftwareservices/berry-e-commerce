@@ -4,7 +4,7 @@ import { BrowserView, MobileView } from 'react-device-detect';
 
 // Material UI
 import { useTheme } from '@mui/material/styles';
-import { Box, Drawer, Stack, useMediaQuery } from '@mui/material';
+import { Box, Drawer, Stack, useMediaQuery, Chip } from '@mui/material';
 
 // Custom Components
 import { MenuList } from './components/MenuList/MenuList';
@@ -42,7 +42,7 @@ export const Sidebar: FC<SideBarProps> = ({ drawerOpen, drawerToggle }) => {
           <MenuList />
           <MenuCard />
           <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
-            {/* <Chip label={process.env.REACT_APP_VERSION} disabled chipcolor="secondary" size="small" sx={{ cursor: 'pointer' }} /> */}
+            <Chip label="0.0.1" disabled color="secondary" size="small" sx={{ cursor: 'pointer' }} />
           </Stack>
         </PerfectScrollbar>
       </BrowserView>
@@ -51,7 +51,7 @@ export const Sidebar: FC<SideBarProps> = ({ drawerOpen, drawerToggle }) => {
           <MenuList />
           <MenuCard />
           <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
-            {/* <Chip label={process.env.REACT_APP_VERSION} disabled chipcolor="secondary" size="small" sx={{ cursor: 'pointer' }} /> */}
+            <Chip label="0.0.1" disabled color="secondary" size="small" sx={{ cursor: 'pointer' }} />
           </Stack>
         </Box>
       </MobileView>

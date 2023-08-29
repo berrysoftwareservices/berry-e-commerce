@@ -1,13 +1,19 @@
 import { useMemo } from 'react';
 import { shallow } from 'zustand/shallow';
 
+// Material UI
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import './App.css';
-import NavigationScroll from '../../utils/NavigationScroll';
-import { AppRoutes } from '../Routes/Routes';
-import { theme } from '../../themes';
 
+// Custom Components
+import { AppRoutes } from '../Routes/Routes';
+import NavigationScroll from '../../utils/NavigationScroll';
+
+// Stores
 import { useGeneralCustomizationStore } from '../../stores/useGeneralCustomizationStore';
+
+// Styles
+import { theme } from '../../themes';
+import './App.css';
 
 function App() {
   const { fontFamily, borderRadius, opened } = useGeneralCustomizationStore(

@@ -2,18 +2,21 @@
 import { FC } from 'react';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
+import { shallow } from 'zustand/shallow';
 
 // Material UI
 import { useTheme } from '@mui/material/styles';
 import { Collapse, List, ListItemButton, ListItemText, Typography } from '@mui/material';
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+// import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 // Custom Components
-// import NavItem from '../NavItem/NavItem';
+import { NavItem } from '../NavItem/NavItem';
+
+// Stores
+import { useGeneralCustomizationStore } from '../../../../../../../stores/useGeneralCustomizationStore';
 
 // assets
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
-import { NavItem } from '../NavItem/NavItem';
 
 type Item = {
   id: string;
@@ -35,8 +38,14 @@ interface NavCollapseProps {
 
 export const NavCollapse: FC<NavCollapseProps> = ({ menu, level }) => {
   const theme = useTheme();
-  // const customization = useSelector((state) => state.customization);
   // const navigate = useNavigate();
+
+  const { borderRadius } = useGeneralCustomizationStore(
+    (state) => ({
+      borderRadius: state.borderRadius,
+    }),
+    shallow,
+  );
 
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
@@ -95,30 +104,26 @@ export const NavCollapse: FC<NavCollapseProps> = ({ menu, level }) => {
     }
   });
 
-  const Icon = () => menu.icon;
-  const menuIcon = menu.icon ? (
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    <Icon strokeWidth={1.5} size="1.3rem" style={{ marginTop: 'auto', marginBottom: 'auto' }} />
-  ) : (
-    <FiberManualRecordIcon
-      sx={{
-        width: selected === menu.id ? 8 : 6,
-        height: selected === menu.id ? 8 : 6,
-      }}
-      fontSize={level > 0 ? 'inherit' : 'medium'}
-    />
-  );
-
-  console.log('************');
-  console.log('menuIcon', menuIcon);
-  console.log('************');
+  // const Icon = () => menu.icon;
+  // const menuIcon = menu.icon ? (
+  //   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //   // @ts-ignore
+  //   <Icon strokeWidth={1.5} size="1.3rem" style={{ marginTop: 'auto', marginBottom: 'auto' }} />
+  // ) : (
+  //   <FiberManualRecordIcon
+  //     sx={{
+  //       width: selected === menu.id ? 8 : 6,
+  //       height: selected === menu.id ? 8 : 6,
+  //     }}
+  //     fontSize={level > 0 ? 'inherit' : 'medium'}
+  //   />
+  // );
 
   return (
     <>
       <ListItemButton
         sx={{
-          // borderRadius: `${customization.borderRadius}px`,
+          borderRadius: borderRadius,
           mb: 0.5,
           alignItems: 'flex-start',
           backgroundColor: level > 1 ? 'transparent !important' : 'inherit',
