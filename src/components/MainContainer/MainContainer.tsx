@@ -1,3 +1,5 @@
+import { shallow } from 'zustand/shallow';
+
 // Material UI
 import { AppBar, Box, Toolbar, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -12,6 +14,7 @@ import { Sidebar } from './components/Sidebar/Sidebar';
 // Custom Hooks
 
 // Stores
+import { useGeneralCustomizationStore } from '../../stores/useGeneralCustomizationStore';
 
 // Services
 
@@ -24,14 +27,18 @@ import { Sidebar } from './components/Sidebar/Sidebar';
 export const MainContainer = () => {
   const theme = useTheme();
 
-  // TODO: move this code to use zustand
-  //  const leftDrawerOpened = useSelector((state) => state.customization.opened);
-  // const handleLeftDrawerToggle = () => {
-  //   dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
-  // };
+  const { opened: leftDrawerOpened, setOpened } = useGeneralCustomizationStore(
+    (state) => ({
+      opened: state.opened,
+      setOpened: state.setOpened,
+    }),
+    shallow,
+  );
 
-  const handleLeftDrawerToggle = () => {};
-  const leftDrawerOpened = true;
+  const handleLeftDrawerToggle = () => {
+    setOpened(!leftDrawerOpened);
+  };
+
   const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
@@ -43,7 +50,7 @@ export const MainContainer = () => {
         elevation={0}
         sx={{
           bgcolor: theme.palette.background.default,
-          // transition: leftDrawerOpened ? theme.transitions.create('width') : 'none'
+          transition: leftDrawerOpened ? theme.transitions.create('width') : 'none',
         }}
       >
         <Toolbar>

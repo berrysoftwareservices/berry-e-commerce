@@ -38,9 +38,12 @@ export const Header: FC<HeaderProps> = ({ handleLeftDrawerToggle }) => {
           <Avatar
             variant="rounded"
             sx={{
-              // TODO: Get this properties from theme (Aderlin)
-              // ...theme.typography.commonAvatar,
-              // ...theme.typography.mediumAvatar,
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              ...theme.typography?.commonAvatar,
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              ...theme.typography.mediumAvatar,
               transition: 'all .2s ease-in-out',
               background: theme.palette.secondary.light,
               color: theme.palette.secondary.dark,
