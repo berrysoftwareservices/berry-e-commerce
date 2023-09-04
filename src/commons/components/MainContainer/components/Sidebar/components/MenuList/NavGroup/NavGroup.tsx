@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 // Material UI
-// import { useTheme } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 import { Divider, List, Typography } from '@mui/material';
 
 // Custom Components
@@ -22,7 +22,7 @@ interface NavGroupProps {
 }
 
 export const NavGroup: FC<NavGroupProps> = ({ item }) => {
-  // const theme = useTheme();
+  const theme = useTheme();
 
   // menu list collapse & items
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -46,12 +46,16 @@ export const NavGroup: FC<NavGroupProps> = ({ item }) => {
       <List
         subheader={
           item.title && (
-            // <Typography variant="caption" sx={{ ...theme.typography.menuCaption }} display="block" gutterBottom>
-            <Typography variant="caption" display="block" gutterBottom>
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            <Typography variant="caption" sx={{ ...theme.typography.menuCaption }} display="block" gutterBottom>
+              {/* <Typography variant="caption" display="block" gutterBottom> */}
               {item.title}
               {item.caption && (
-                // <Typography variant="caption" sx={{ ...theme.typography.subMenuCaption }} display="block" gutterBottom>
-                <Typography variant="caption" display="block" gutterBottom>
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                <Typography variant="caption" sx={{ ...theme.typography.subMenuCaption }} display="block" gutterBottom>
+                  {/* <Typography variant="caption" display="block" gutterBottom> */}
                   {item.caption}
                 </Typography>
               )}

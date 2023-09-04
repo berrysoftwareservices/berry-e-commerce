@@ -32,8 +32,8 @@ import { MainCard } from '../../../../../MainCard/MainCard';
 
 // assets
 import { Transitions } from '../../../../../Transitions/Transitions';
-import UserImage from '../../../../../../assets/images/users/user-round.svg';
-import { useGeneralCustomizationStore } from '../../../../../../stores/useGeneralCustomizationStore';
+import UserImage from '../../../../../../../assets/images/users/user-round.svg';
+import { useGeneralCustomizationStore } from '../../../../../../../stores/useGeneralCustomizationStore';
 
 import SearchIcon from '@mui/icons-material/Search';
 import PersonIcon from '@mui/icons-material/Person';

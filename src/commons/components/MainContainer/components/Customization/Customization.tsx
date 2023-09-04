@@ -20,11 +20,11 @@ import { useTheme } from '@mui/material/styles';
 import SettingsIcon from '@mui/icons-material/Settings';
 
 // Stores
-import { useGeneralCustomizationStore } from '../../../../stores/useGeneralCustomizationStore';
+import { useGeneralCustomizationStore } from '../../../../../stores/useGeneralCustomizationStore';
 
 // Custom Components
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import { SubCard } from '../../../../commons/components/SubCard';
+import { SubCard } from '../../../SubCard/SubCard';
 
 // concat 'px'
 function valueText(value: number) {

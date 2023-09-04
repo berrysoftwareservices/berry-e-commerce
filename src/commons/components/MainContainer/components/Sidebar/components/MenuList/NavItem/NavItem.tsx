@@ -10,7 +10,7 @@ import { Avatar, Chip, ListItemButton, ListItemIcon, ListItemText, Typography } 
 // import { MENU_OPEN, SET_MENU } from 'store/actions';
 
 // Stores
-import { useGeneralCustomizationStore } from '../../../../../../../stores/useGeneralCustomizationStore';
+import { useGeneralCustomizationStore } from '../../../../../../../../stores/useGeneralCustomizationStore';
 
 // assets
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';

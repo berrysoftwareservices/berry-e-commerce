@@ -14,7 +14,7 @@ import { Sidebar } from './components/Sidebar/Sidebar';
 // Custom Hooks
 
 // Stores
-import { useGeneralCustomizationStore } from '../../stores/useGeneralCustomizationStore';
+import { useGeneralCustomizationStore } from '../../../stores/useGeneralCustomizationStore';
 
 // Services
 

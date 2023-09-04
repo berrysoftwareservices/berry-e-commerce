@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from 'react';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
@@ -13,7 +12,7 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import { NavItem } from '../NavItem/NavItem';
 
 // Stores
-import { useGeneralCustomizationStore } from '../../../../../../../stores/useGeneralCustomizationStore';
+import { useGeneralCustomizationStore } from '../../../../../../../../stores/useGeneralCustomizationStore';
 
 // assets
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';

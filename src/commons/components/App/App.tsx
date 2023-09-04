@@ -6,13 +6,13 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 
 // Custom Components
 import { AppRoutes } from '../Routes/Routes';
-import NavigationScroll from '../../utils/NavigationScroll';
+import NavigationScroll from '../../../utils/NavigationScroll';
 
 // Stores
-import { useGeneralCustomizationStore } from '../../stores/useGeneralCustomizationStore';
+import { useGeneralCustomizationStore } from '../../../stores/useGeneralCustomizationStore';
 
 // Styles
-import { theme } from '../../themes';
+import { theme } from '../../../themes';
 import './App.css';
 
 function App() {

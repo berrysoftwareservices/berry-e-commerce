@@ -1,10 +1,8 @@
-/* eslint-disable */
 /**
  * Color intention that you want to used in your theme
  * @param {JsonObject} theme Theme customization object
  */
 
-// TODO: remove any prop type (Irving)
 export default function themePalette() {
   return {
     common: {
