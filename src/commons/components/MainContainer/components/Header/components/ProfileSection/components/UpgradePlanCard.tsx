@@ -6,7 +6,7 @@ import { Button, Card, CardContent, Grid, Stack, Typography } from '@mui/materia
 
 // styles
 const CardStyle = styled(Card)(({ theme }) => ({
-  background: theme.palette.warning.light,
+  background: '#ddd0f5',
   marginTop: '16px',
   marginBottom: '16px',
   overflow: 'hidden',
@@ -17,7 +17,7 @@ const CardStyle = styled(Card)(({ theme }) => ({
     width: '200px',
     height: '200px',
     border: '19px solid ',
-    borderColor: theme.palette.warning.main,
+    borderColor: theme.palette.secondary.dark,
     borderRadius: '50%',
     top: '65px',
     right: '-150px',
@@ -28,12 +28,13 @@ const CardStyle = styled(Card)(({ theme }) => ({
     width: '200px',
     height: '200px',
     border: '3px solid ',
-    borderColor: theme.palette.warning.main,
+    borderColor: theme.palette.secondary.dark,
     borderRadius: '50%',
     top: '145px',
     right: '-70px',
   },
 }));
+console.log(CardStyle);
 
 // ==============================|| PROFILE MENU - UPGRADE PLAN CARD ||============================== //
 
@@ -52,7 +53,7 @@ export const UpgradePlanCard = () => (
         </Grid>
         <Grid item>
           <Stack direction="row">
-            <Button variant="contained" color="warning" sx={{ boxShadow: 'none' }}>
+            <Button variant="contained" color="secondary" sx={{ boxShadow: 'none' }}>
               Go Premium
             </Button>
           </Stack>

@@ -1,4 +1,5 @@
-import { useState, useRef, SetStateAction } from 'react';
+import { useState, useRef, SetStateAction, useCallback } from 'react';
+import { shallow } from 'zustand/shallow';
 import { Link } from 'react-router-dom';
 
 // Material UI
@@ -29,6 +30,7 @@ import { MainCard } from '../../../../../MainCard/MainCard';
 import { IconBell } from '@tabler/icons-react';
 import { Transitions } from '../../../../../Transitions/Transitions';
 import { NotificationList } from './components/NotificationList/NotificationList';
+import { useGeneralSettingsStore } from '../../../../../../../stores/useGeneralSettingsStore';
 
 // notification status options
 const status = [
@@ -54,23 +56,43 @@ export const NotificationSection = () => {
   const theme = useTheme();
   const matchesXs = useMediaQuery(theme.breakpoints.down('md'));
 
-  const [open, setOpen] = useState(false);
   const [value, setValue] = useState('');
+  /**
+   * anchorRef is used on different componets and specifying one type leads to other components throwing an error
+   * */
+  // const anchorRef = useRef(null);
+
+  const { openProfileSettings, setOpenProfileSettings, openNotificationSettings, setOpenNotificationSettings } =
+    useGeneralSettingsStore(
+      (state) => ({
+        openProfileSettings: state.openProfileSettings,
+        setOpenProfileSettings: state.setOpenProfileSettings,
+        openNotificationSettings: state.openNotificationSettings,
+        setOpenNotificationSettings: state.setOpenNotificationSettings,
+      }),
+      shallow,
+    );
   /**
    * anchorRef is used on different componets and specifying one type leads to other components throwing an error
    * */
   const anchorRef = useRef(null);
 
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+  const handleToggleNotification = useCallback(() => {
+    if (openProfileSettings) {
+      setOpenProfileSettings(false);
+    }
+    if (openNotificationSettings) {
+      setOpenNotificationSettings(false);
+    } else {
+      setOpenNotificationSettings(true);
+    }
+  }, [openNotificationSettings, openProfileSettings, setOpenNotificationSettings, setOpenProfileSettings]);
+  const handleClose = () => {
+    // if (anchorRef.current && anchorRef.current.contains(event.target)) {
+    //   return;
+    // }
+    setOpenProfileSettings(false);
   };
-
-  // const handleClose = (event: { target: unknown }) => {
-  //   if (anchorRef.current && anchorRef.current.contains(event.target)) {
-  //     return;
-  //   }
-  //   setOpen(false);
-  // };
 
   // const prevOpen = useRef(open);
   // useEffect(() => {
@@ -110,9 +132,9 @@ export const NotificationSection = () => {
               },
             }}
             ref={anchorRef}
-            aria-controls={open ? 'menu-list-grow' : undefined}
+            aria-controls={openNotificationSettings ? 'menu-list-grow' : undefined}
             aria-haspopup="true"
-            onClick={handleToggle}
+            onClick={handleToggleNotification}
             color="inherit"
           >
             <IconBell stroke={1.5} size="1.3rem" />
@@ -121,9 +143,9 @@ export const NotificationSection = () => {
       </Box>
       <Popper
         placement={matchesXs ? 'bottom' : 'bottom-end'}
-        open={open}
+        open={openNotificationSettings}
         anchorEl={anchorRef.current}
-        role={undefined}
+        // role={undefined}
         transition
         disablePortal
         popperOptions={{
@@ -138,10 +160,9 @@ export const NotificationSection = () => {
         }}
       >
         {({ TransitionProps }) => (
-          <Transitions position={matchesXs ? 'top' : 'top-right'} in={open} {...TransitionProps}>
-            <Paper>
-              {/* <ClickAwayListener onClickAway={handleClose}> */}
-              <ClickAwayListener onClickAway={() => {}}>
+          <Transitions position={matchesXs ? 'top' : 'top-right'} in={openProfileSettings} {...TransitionProps}>
+            <Paper elevation={5}>
+              <ClickAwayListener onClickAway={handleClose}>
                 <MainCard border={false} content={false} boxShadow shadow={theme.shadows[16]}>
                   <>
                     <Grid container direction="column" spacing={2}>

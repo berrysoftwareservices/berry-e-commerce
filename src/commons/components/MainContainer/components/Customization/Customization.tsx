@@ -146,7 +146,7 @@ export const Customization = () => {
                   >
                     <FormControlLabel
                       value="Roboto"
-                      control={<Radio />}
+                      control={<Radio color="secondary" />}
                       label="Roboto"
                       sx={{
                         '& .MuiSvgIcon-root': { fontSize: 28 },
@@ -155,7 +155,7 @@ export const Customization = () => {
                     />
                     <FormControlLabel
                       value="Poppins"
-                      control={<Radio />}
+                      control={<Radio color="secondary" />}
                       label="Poppins"
                       sx={{
                         '& .MuiSvgIcon-root': { fontSize: 28 },
@@ -164,7 +164,7 @@ export const Customization = () => {
                     />
                     <FormControlLabel
                       value="Inter"
-                      control={<Radio />}
+                      control={<Radio color="secondary" />}
                       label="Inter"
                       sx={{
                         '& .MuiSvgIcon-root': { fontSize: 28 },
