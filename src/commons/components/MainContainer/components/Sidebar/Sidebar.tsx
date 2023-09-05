@@ -12,7 +12,7 @@ import { LogoSection } from '../LogoSection/LogoSection';
 import { MenuCard } from './components/MenuCard/MenuCard';
 
 // Constants
-import { drawerWidth } from './constants/sidebar.constans';
+import { drawerWidth } from '../../../../../constants';
 
 interface SideBarProps {
   drawerOpen: boolean;
@@ -63,7 +63,7 @@ export const Sidebar: FC<SideBarProps> = ({ drawerOpen, drawerToggle }) => {
   return (
     <Box
       component="nav"
-      sx={{ flexShrink: { md: 0 }, width: matchUpMd ? drawerWidth : 'auto' }}
+      sx={{ flexShrink: { md: 0 }, width: matchUpMd ? (drawerOpen ? drawerWidth : 'auto') : 'auto' }}
       aria-label="mailbox folders"
     >
       <Drawer

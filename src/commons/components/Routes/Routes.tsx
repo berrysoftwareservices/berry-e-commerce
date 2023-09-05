@@ -5,6 +5,5 @@ import { MainContainer } from '../MainContainer/MainContainer';
 export const AppRoutes = () => (
   <Routes>
     <Route path="/*" element={<MainContainer />} />
-    {/* <Route path="/dashboard/default" element={<Dashboard />} /> */}
   </Routes>
 );

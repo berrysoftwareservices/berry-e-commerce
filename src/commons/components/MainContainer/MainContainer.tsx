@@ -1,31 +1,28 @@
+import { useRef, useState, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { shallow } from 'zustand/shallow';
 
 // Material UI
-import { AppBar, Box, Toolbar, useMediaQuery } from '@mui/material';
+import { AppBar, Box, Stack, Toolbar, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-
-// Hooks
 
 // Custom Components
 import { Customization } from './components/Customization/Customization';
 import { Header } from './components/Header/Header';
 import { Sidebar } from './components/Sidebar/Sidebar';
-
-// Custom Hooks
+import { Dashboard } from '../../../pages/Dashboard/Dashboard';
 
 // Stores
 import { useGeneralCustomizationStore } from '../../../stores/useGeneralCustomizationStore';
 
-// Services
-
-// Utils
-
-// Constants
-
-// Styles
-
 export const MainContainer = () => {
   const theme = useTheme();
+  const appBarRef = useRef<HTMLDivElement>(null);
+  const [appBarHeight, setAppBarHeight] = useState(0);
+
+  useEffect(() => {
+    setAppBarHeight(appBarRef?.current?.offsetHeight ?? 0);
+  }, []);
 
   const { opened: leftDrawerOpened, setOpened } = useGeneralCustomizationStore(
     (state) => ({
@@ -44,6 +41,7 @@ export const MainContainer = () => {
   return (
     <Box sx={{ display: 'flex' }}>
       <AppBar
+        ref={appBarRef}
         enableColorOnDark
         position="fixed"
         color="inherit"
@@ -57,7 +55,26 @@ export const MainContainer = () => {
           <Header handleLeftDrawerToggle={handleLeftDrawerToggle} />
         </Toolbar>
       </AppBar>
-      <Sidebar drawerOpen={!matchDownMd ? leftDrawerOpened : !leftDrawerOpened} drawerToggle={handleLeftDrawerToggle} />
+      <Stack
+        direction="row"
+        p={2}
+        sx={{
+          width: '100%',
+          height: 'fit-content',
+          position: 'absolute',
+          top: appBarHeight,
+          left: 0,
+          bgcolor: '#eef2f6',
+        }}
+      >
+        <Sidebar
+          drawerOpen={!matchDownMd ? leftDrawerOpened : !leftDrawerOpened}
+          drawerToggle={handleLeftDrawerToggle}
+        />
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </Stack>
       <Customization />
     </Box>
   );
