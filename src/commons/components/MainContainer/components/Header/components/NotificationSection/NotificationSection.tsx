@@ -1,4 +1,4 @@
-import { useState, useRef, SetStateAction, useCallback } from 'react';
+import React, { useState, useRef } from 'react';
 import { shallow } from 'zustand/shallow';
 import { Link } from 'react-router-dom';
 
@@ -21,10 +21,8 @@ import {
   Typography,
   useMediaQuery,
 } from '@mui/material';
-import PerfectScrollbar from 'react-perfect-scrollbar';
 
 // Custom Components
-import { MainCard } from '../../../../../MainCard/MainCard';
 
 // assets
 import { IconBell } from '@tabler/icons-react';
@@ -52,59 +50,23 @@ const status = [
   },
 ];
 
-export const NotificationSection = () => {
+export const NotificationSection = React.memo(() => {
   const theme = useTheme();
   const matchesXs = useMediaQuery(theme.breakpoints.down('md'));
 
-  const [value, setValue] = useState('');
-  /**
-   * anchorRef is used on different componets and specifying one type leads to other components throwing an error
-   * */
-  // const anchorRef = useRef(null);
+  const [searchText, setSearchText] = useState('');
 
-  const { openProfileSettings, setOpenProfileSettings, openNotificationSettings, setOpenNotificationSettings } =
-    useGeneralSettingsStore(
-      (state) => ({
-        openProfileSettings: state.openProfileSettings,
-        setOpenProfileSettings: state.setOpenProfileSettings,
-        openNotificationSettings: state.openNotificationSettings,
-        setOpenNotificationSettings: state.setOpenNotificationSettings,
-      }),
-      shallow,
-    );
+  const { openNotificationSettings, setOpenNotificationSettings } = useGeneralSettingsStore(
+    (state) => ({
+      openNotificationSettings: state.openNotificationSettings,
+      setOpenNotificationSettings: state.setOpenNotificationSettings,
+    }),
+    shallow,
+  );
   /**
    * anchorRef is used on different componets and specifying one type leads to other components throwing an error
    * */
   const anchorRef = useRef(null);
-
-  const handleToggleNotification = useCallback(() => {
-    if (openProfileSettings) {
-      setOpenProfileSettings(false);
-    }
-    if (openNotificationSettings) {
-      setOpenNotificationSettings(false);
-    } else {
-      setOpenNotificationSettings(true);
-    }
-  }, [openNotificationSettings, openProfileSettings, setOpenNotificationSettings, setOpenProfileSettings]);
-  const handleClose = () => {
-    // if (anchorRef.current && anchorRef.current.contains(event.target)) {
-    //   return;
-    // }
-    setOpenProfileSettings(false);
-  };
-
-  // const prevOpen = useRef(open);
-  // useEffect(() => {
-  //   if (prevOpen.current === true && open === false) {
-  //     anchorRef.current.focus();
-  //   }
-  //   prevOpen.current = open;
-  // }, [open]);
-
-  const handleChange = (event: { target: { value: SetStateAction<string> } }) => {
-    if (event?.target.value) setValue(event?.target.value);
-  };
 
   return (
     <>
@@ -134,7 +96,7 @@ export const NotificationSection = () => {
             ref={anchorRef}
             aria-controls={openNotificationSettings ? 'menu-list-grow' : undefined}
             aria-haspopup="true"
-            onClick={handleToggleNotification}
+            onClick={() => setOpenNotificationSettings(true)}
             color="inherit"
           >
             <IconBell stroke={1.5} size="1.3rem" />
@@ -145,7 +107,6 @@ export const NotificationSection = () => {
         placement={matchesXs ? 'bottom' : 'bottom-end'}
         open={openNotificationSettings}
         anchorEl={anchorRef.current}
-        // role={undefined}
         transition
         disablePortal
         popperOptions={{
@@ -160,80 +121,76 @@ export const NotificationSection = () => {
         }}
       >
         {({ TransitionProps }) => (
-          <Transitions position={matchesXs ? 'top' : 'top-right'} in={openProfileSettings} {...TransitionProps}>
-            <Paper elevation={5}>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MainCard border={false} content={false} boxShadow shadow={theme.shadows[16]}>
-                  <>
-                    <Grid container direction="column" spacing={2}>
-                      <Grid item xs={12}>
-                        <Grid container alignItems="center" justifyContent="space-between" sx={{ pt: 2, px: 2 }}>
-                          <Grid item>
-                            <Stack direction="row" spacing={2}>
-                              <Typography variant="subtitle1">All Notification</Typography>
-                              <Chip
-                                size="small"
-                                label="01"
-                                sx={{
-                                  color: theme.palette.background.default,
-                                  bgcolor: theme.palette.warning.dark,
-                                }}
-                              />
-                            </Stack>
-                          </Grid>
-                          <Grid item>
-                            <Typography component={Link} to="#" variant="subtitle2" color="primary">
-                              Mark as all read
-                            </Typography>
-                          </Grid>
+          <Transitions position={matchesXs ? 'top' : 'top-right'} in={openNotificationSettings} {...TransitionProps}>
+            <ClickAwayListener onClickAway={() => setOpenNotificationSettings(false)}>
+              <Paper elevation={5}>
+                <Box>
+                  <Grid container direction="column" spacing={2}>
+                    <Grid item xs={12}>
+                      <Grid container alignItems="center" justifyContent="space-between" sx={{ pt: 2, px: 2 }}>
+                        <Grid item>
+                          <Stack direction="row" spacing={2}>
+                            <Typography variant="subtitle1">All Notification</Typography>
+                            <Chip
+                              size="small"
+                              label="01"
+                              sx={{
+                                color: theme.palette.background.default,
+                                bgcolor: theme.palette.warning.dark,
+                              }}
+                            />
+                          </Stack>
+                        </Grid>
+                        <Grid item>
+                          <Typography component={Link} to="#" variant="subtitle2" color="primary">
+                            Mark as all read
+                          </Typography>
                         </Grid>
                       </Grid>
-                      <Grid item xs={12}>
-                        <PerfectScrollbar
-                          style={{ height: '100%', maxHeight: 'calc(100vh - 205px)', overflowX: 'hidden' }}
-                        >
-                          <Grid container direction="column" spacing={2}>
-                            <Grid item xs={12}>
-                              <Box sx={{ px: 2, pt: 0.25 }}>
-                                <TextField
-                                  id="outlined-select-currency-native"
-                                  select
-                                  fullWidth
-                                  value={value}
-                                  onChange={handleChange}
-                                  SelectProps={{
-                                    native: true,
-                                  }}
-                                >
-                                  {status.map((option) => (
-                                    <option key={option.value} value={option.value}>
-                                      {option.label}
-                                    </option>
-                                  ))}
-                                </TextField>
-                              </Box>
-                            </Grid>
-                            <Grid item xs={12} p={0}>
-                              <Divider sx={{ my: 0 }} />
-                            </Grid>
-                          </Grid>
-                          <NotificationList />
-                        </PerfectScrollbar>
-                      </Grid>
                     </Grid>
-                    <Divider />
-                    <CardActions sx={{ p: 1.25, justifyContent: 'center' }}>
-                      <Button size="small" disableElevation>
-                        View All
-                      </Button>
-                    </CardActions>
-                  </>
-                </MainCard>
-              </ClickAwayListener>
-            </Paper>
+                    <Grid item xs={12}>
+                      <Stack sx={{ height: '100%', maxHeight: 'calc(100vh - 205px)', overflowX: 'hidden' }}>
+                        <Grid container direction="column" spacing={2}>
+                          <Grid item xs={12}>
+                            <Box sx={{ px: 2, pt: 0.25 }}>
+                              <TextField
+                                id="outlined-select-currency-native"
+                                select
+                                fullWidth
+                                value={searchText}
+                                onChange={(event) => setSearchText(event?.target.value)}
+                                SelectProps={{
+                                  native: true,
+                                }}
+                              >
+                                {status.map((option) => (
+                                  <option key={option.value} value={option.value}>
+                                    {option.label}
+                                  </option>
+                                ))}
+                              </TextField>
+                            </Box>
+                          </Grid>
+                          <Grid item xs={12} p={0}>
+                            <Divider sx={{ my: 0 }} />
+                          </Grid>
+                        </Grid>
+                        <NotificationList />
+                      </Stack>
+                    </Grid>
+                  </Grid>
+                  <Divider />
+                  <CardActions sx={{ p: 1.25, justifyContent: 'center' }}>
+                    <Button size="small" disableElevation>
+                      View All
+                    </Button>
+                  </CardActions>
+                </Box>
+              </Paper>
+            </ClickAwayListener>
           </Transitions>
         )}
       </Popper>
     </>
   );
-};
+});
