@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { shallow } from 'zustand/shallow';
+import { useWindowHeight } from '@react-hook/window-size';
 
 // Material UI
 import { AppBar, Box, Stack, Toolbar, useMediaQuery } from '@mui/material';
@@ -11,6 +12,7 @@ import { Customization } from './components/Customization/Customization';
 import { Header } from './components/Header/Header';
 import { Sidebar } from './components/Sidebar/Sidebar';
 import { Dashboard } from '../../../pages/Dashboard/Dashboard';
+import { PageInProgress } from '../../../pages/PageInProgress/PageInProgress';
 
 // Stores
 import { useGeneralCustomizationStore } from '../../../stores/useGeneralCustomizationStore';
@@ -19,6 +21,8 @@ export const MainContainer = () => {
   const theme = useTheme();
   const appBarRef = useRef<HTMLDivElement>(null);
   const [appBarHeight, setAppBarHeight] = useState(0);
+  const windowHeight = useWindowHeight();
+  const pageHeight = windowHeight - appBarHeight;
 
   useEffect(() => {
     setAppBarHeight(appBarRef?.current?.offsetHeight ?? 0);
@@ -39,7 +43,7 @@ export const MainContainer = () => {
   const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', overflowY: 'auto' }}>
       <AppBar
         ref={appBarRef}
         enableColorOnDark
@@ -60,9 +64,10 @@ export const MainContainer = () => {
         p={2}
         sx={{
           width: '100%',
-          height: 'fit-content',
+          height: pageHeight,
           position: 'absolute',
           top: appBarHeight,
+          overflowY: 'auto',
           left: 0,
           bgcolor: '#eef2f6',
         }}
@@ -72,7 +77,9 @@ export const MainContainer = () => {
           drawerToggle={handleLeftDrawerToggle}
         />
         <Routes>
+          <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/*" element={<PageInProgress />} />
         </Routes>
       </Stack>
       <Customization />

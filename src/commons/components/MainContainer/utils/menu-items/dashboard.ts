@@ -4,7 +4,7 @@ import { IconDashboard } from '@tabler/icons-react';
 // constant
 const icons = { IconDashboard };
 
-const dashboard = {
+export const dashboard = {
   id: 'dashboard',
   title: 'Dashboard',
   type: 'group',
@@ -19,5 +19,3 @@ const dashboard = {
     },
   ],
 };
-
-export default dashboard;

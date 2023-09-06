@@ -6,10 +6,9 @@ const icons = {
   IconKey,
 };
 
-const pages = {
+export const pages = {
   id: 'pages',
   title: 'Pages',
-  caption: 'Pages Caption',
   type: 'group',
   children: [
     {
@@ -24,6 +23,7 @@ const pages = {
           type: 'item',
           url: '/pages/login/login3',
           target: true,
+          disabled: true,
         },
         {
           id: 'register3',
@@ -31,10 +31,9 @@ const pages = {
           type: 'item',
           url: '/pages/register/register3',
           target: true,
+          disabled: true,
         },
       ],
     },
   ],
 };
-
-export default pages;

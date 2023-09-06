@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { FC } from 'react';
+
 // Material UI
 import { styled, useTheme } from '@mui/material/styles';
 import {
@@ -14,11 +16,8 @@ import {
   Typography,
   linearProgressClasses,
 } from '@mui/material';
-
-// assets
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
 
-// styles
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
   borderRadius: 30,
@@ -41,7 +40,8 @@ const CardStyle = styled(Card)(({ theme }) => ({
     position: 'absolute',
     width: '157px',
     height: '157px',
-    // background: theme.palette.primary[200],
+    // @ts-ignore
+    background: theme.palette.primary[200],
     borderRadius: '50%',
     top: '-105px',
     right: '-96px',
@@ -53,15 +53,18 @@ interface LinearProgressWithLabelProps {
 }
 
 const LinearProgressWithLabel: FC<LinearProgressWithLabelProps> = ({ value, ...others }) => {
-  // const theme = useTheme();
+  const theme = useTheme();
 
   return (
     <Grid container direction="column" spacing={1} sx={{ mt: 1.5 }}>
       <Grid item>
         <Grid container justifyContent="space-between">
           <Grid item>
-            {/* <Typography variant="h6" sx={{ color: theme.palette.primary[800] }}> */}
-            <Typography variant="h6">Progress</Typography>
+            <Typography
+              variant="h6"
+              // @ts-ignore
+              sx={{ color: theme.palette.primary[800] }}
+            />
           </Grid>
           <Grid item>
             <Typography variant="h6" color="inherit">{`${Math.round(value)}%`}</Typography>
@@ -87,8 +90,10 @@ export const MenuCard = () => {
               <Avatar
                 variant="rounded"
                 sx={{
-                  // ...theme.typography.commonAvatar,
-                  // ...theme.typography.largeAvatar,
+                  // @ts-ignore
+                  ...theme.typography.commonAvatar,
+                  // @ts-ignore
+                  ...theme.typography.largeAvatar,
                   color: theme.palette.primary.main,
                   border: 'none',
                   borderColor: theme.palette.primary.main,
@@ -102,8 +107,13 @@ export const MenuCard = () => {
             <ListItemText
               sx={{ mt: 0 }}
               primary={
-                // <Typography variant="subtitle1" sx={{ color: theme.palette.primary[800] }}>
-                <Typography variant="subtitle1">Get Extra Space</Typography>
+                <Typography
+                  variant="subtitle1"
+                  // @ts-ignore
+                  sx={{ color: theme.palette.primary[800] }}
+                >
+                  Get Extra Space
+                </Typography>
               }
               secondary={<Typography variant="caption"> 28/23 GB</Typography>}
             />

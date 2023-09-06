@@ -1,11 +1,11 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { FC } from 'react';
 import { forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 import { shallow } from 'zustand/shallow';
 
 // Material UI
-// import { useTheme } from '@mui/material/styles';
-import { Avatar, Chip, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
+import { Avatar, Chip, ListItemButton, ListItemIcon, ListItemText, Typography, useTheme } from '@mui/material';
 
 // import { MENU_OPEN, SET_MENU } from 'store/actions';
 
@@ -34,6 +34,7 @@ type Item = {
   icon?: JSX.Element;
   breadcrumbs?: boolean;
   chip?: Chip;
+  disabled: boolean;
   children?: Item[];
 };
 
@@ -49,6 +50,8 @@ export const NavItem: FC<NavItemProps> = ({ item, level }) => {
   // const customization = useSelector((state) => state.customization);
   // const matchesSM = useMediaQuery(theme.breakpoints.down('lg'));
 
+  const theme = useTheme();
+
   const { borderRadius } = useGeneralCustomizationStore(
     (state) => ({
       borderRadius: state.borderRadius,
@@ -58,7 +61,6 @@ export const NavItem: FC<NavItemProps> = ({ item, level }) => {
 
   const Icon = item.icon;
   const itemIcon = item.icon ? (
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     <Icon stroke={1.5} size="1.3rem" />
   ) : (
@@ -78,7 +80,6 @@ export const NavItem: FC<NavItemProps> = ({ item, level }) => {
 
   const listItemProps = {
     // component: forwardRef((props, ref) => <Link ref={ref} {...props} to={item.url} target={itemTarget} />),
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     component: forwardRef((props, ref) => <Link ref={ref} {...props} to={item.url} target={itemTarget} />),
   };
@@ -106,7 +107,7 @@ export const NavItem: FC<NavItemProps> = ({ item, level }) => {
   return (
     <ListItemButton
       {...listItemProps}
-      // disabled={item.disabled}
+      disabled={item.disabled}
       sx={{
         borderRadius: borderRadius,
         mb: 0.5,
@@ -131,8 +132,8 @@ export const NavItem: FC<NavItemProps> = ({ item, level }) => {
         }
         secondary={
           item.caption && (
-            // <Typography variant="caption" sx={{ ...theme.typography.subMenuCaption }} display="block" gutterBottom>
-            <Typography variant="caption" display="block" gutterBottom>
+            // @ts-ignore
+            <Typography variant="caption" sx={{ ...theme.typography.subMenuCaption }} display="block" gutterBottom>
               {item.caption}
             </Typography>
           )

@@ -27,6 +27,7 @@ type Item = {
   url?: string;
   icon?: JSX.Element;
   breadcrumbs?: boolean;
+  disabled: boolean;
   children?: Item[];
 };
 
