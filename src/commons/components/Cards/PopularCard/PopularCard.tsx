@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { useState } from 'react';
-import { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 // Material UI
-import { useTheme } from '@mui/material/styles';
 import {
   Avatar,
   Button,
@@ -15,6 +13,7 @@ import {
   MenuItem,
   Typography,
   Box,
+  useTheme,
 } from '@mui/material';
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
@@ -32,7 +31,7 @@ import { CardProps } from '../../../../utils/Interfaces/Card.Interface';
 // Constants
 import { gridSpacing } from '../../../../constants';
 
-export const PopularCard: FC<CardProps> = ({ isLoading }) => {
+export const PopularCard: FC<CardProps> = React.memo(({ isLoading }) => {
   const theme = useTheme();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -335,4 +334,4 @@ export const PopularCard: FC<CardProps> = ({ isLoading }) => {
       )}
     </>
   );
-};
+});

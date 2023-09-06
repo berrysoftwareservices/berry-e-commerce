@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 // Material UI
-import { useTheme, styled } from '@mui/material/styles';
-import { Avatar, Box, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
+import { Avatar, Box, List, ListItem, ListItemAvatar, ListItemText, Typography, useTheme, styled } from '@mui/material';
 import StorefrontTwoToneIcon from '@mui/icons-material/StorefrontTwoTone';
 
 // Custom Components
@@ -38,7 +37,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
   },
 }));
 
-export const TotalIncomeLightCard: FC<CardProps> = ({ isLoading }) => {
+export const TotalIncomeLightCard: FC<CardProps> = React.memo(({ isLoading }) => {
   const theme = useTheme();
 
   return (
@@ -91,4 +90,4 @@ export const TotalIncomeLightCard: FC<CardProps> = ({ isLoading }) => {
       )}
     </>
   );
-};
+});

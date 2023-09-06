@@ -1,8 +1,8 @@
-import { FC } from 'react';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import React, { FC } from 'react';
 
 // Material UI
-import { useTheme } from '@mui/material/styles';
-import { Avatar, Box, ButtonBase } from '@mui/material';
+import { Avatar, Box, ButtonBase, useTheme } from '@mui/material';
 
 // Custom Components
 import { SearchSection } from './components/SearchSection/SearchSection';
@@ -17,7 +17,7 @@ interface HeaderProps {
   handleLeftDrawerToggle: () => void;
 }
 
-export const Header: FC<HeaderProps> = ({ handleLeftDrawerToggle }) => {
+export const Header: FC<HeaderProps> = React.memo(({ handleLeftDrawerToggle }) => {
   const theme = useTheme();
 
   return (
@@ -38,10 +38,8 @@ export const Header: FC<HeaderProps> = ({ handleLeftDrawerToggle }) => {
           <Avatar
             variant="rounded"
             sx={{
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
               ...theme.typography?.commonAvatar,
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
               ...theme.typography.mediumAvatar,
               transition: 'all .2s ease-in-out',
@@ -60,14 +58,12 @@ export const Header: FC<HeaderProps> = ({ handleLeftDrawerToggle }) => {
         </ButtonBase>
       </Box>
 
-      {/* header search */}
       <SearchSection />
       <Box sx={{ flexGrow: 1 }} />
       <Box sx={{ flexGrow: 1 }} />
 
-      {/* notification & profile */}
       <NotificationSection />
       <ProfileSection />
     </>
   );
-};
+});

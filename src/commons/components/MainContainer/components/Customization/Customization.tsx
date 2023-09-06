@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { shallow } from 'zustand/shallow';
 
 // Material UI
@@ -14,24 +14,25 @@ import {
   Tooltip,
   Typography,
   Box,
+  useTheme,
 } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-// import { IconSettings } from '@tabler/icons';
 import SettingsIcon from '@mui/icons-material/Settings';
-
-// Stores
-import { useGeneralCustomizationStore } from '../../../../../stores/useGeneralCustomizationStore';
 
 // Custom Components
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { SubCard } from '../../../SubCard/SubCard';
 
-// concat 'px'
+// Stores
+import { useGeneralCustomizationStore } from '../../../../../stores/useGeneralCustomizationStore';
+
+// Constants
+import { gridSpacing } from '../../../../../constants';
+
 function valueText(value: number) {
   return `${value}px`;
 }
 
-export const Customization = () => {
+export const Customization = React.memo(() => {
   const theme = useTheme();
   const { currentFontFamily, borderRadius, setCurrentFontFamily, setBorderRadius } = useGeneralCustomizationStore(
     (state) => ({
@@ -43,7 +44,6 @@ export const Customization = () => {
     shallow,
   );
 
-  // drawer on/off
   const [open, setOpen] = useState<boolean>(false);
   const handleToggle = useCallback(() => setOpen(!open), [open]);
 
@@ -63,7 +63,6 @@ export const Customization = () => {
       break;
   }
 
-  // // state - font family
   const [fontFamily, setFontFamily] = useState(initialFont);
 
   useEffect(() => {
@@ -130,11 +129,7 @@ export const Customization = () => {
         }}
       >
         <PerfectScrollbar component="div">
-          <Grid
-            container
-            // spacing={gridSpacing}
-            sx={{ p: 3 }}
-          >
+          <Grid container spacing={gridSpacing} sx={{ p: 3 }}>
             <Grid item xs={12}>
               <SubCard title="Font Family" darkTitle content contentSX={{ marginLeft: '12px', marginTop: '12px' }}>
                 <FormControl>
@@ -216,4 +211,4 @@ export const Customization = () => {
       </Drawer>
     </Box>
   );
-};
+});

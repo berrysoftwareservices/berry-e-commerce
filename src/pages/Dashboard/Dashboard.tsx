@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Material UI
 import { Grid } from '@mui/material';
-import { gridSpacing } from '../../constants';
 
 // Custom Components
 import { EarningCard } from '../../commons/components/Cards/EarningCard/EarningCard';
@@ -12,7 +11,10 @@ import { TotalIncomeLightCard } from '../../commons/components/Cards/TotalIncome
 import { TotalGrowthBarChart } from '../../commons/components/TotalGrowthBarChart/TotalGrowthBarChart';
 import { PopularCard } from '../../commons/components/Cards/PopularCard/PopularCard';
 
-export const Dashboard = () => {
+// Constants
+import { gridSpacing } from '../../constants';
+
+export const Dashboard = React.memo(() => {
   const [isLoading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(false);
@@ -52,4 +54,4 @@ export const Dashboard = () => {
       </Grid>
     </Grid>
   );
-};
+});

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { FC } from 'react';
-import { forwardRef } from 'react';
+import React, { FC, forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 import { shallow } from 'zustand/shallow';
 
@@ -15,35 +14,15 @@ import { useGeneralCustomizationStore } from '../../../../../../../../stores/use
 // assets
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
-type Chip = {
-  color: 'default' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
-  variant: 'filled' | 'outlined';
-  size: 'small' | 'medium';
-  label: string;
-  avatar: JSX.Element;
-};
-
-type Item = {
-  id: string;
-  title?: string;
-  target?: string;
-  external?: string;
-  caption?: string;
-  type?: string;
-  url?: string;
-  icon?: JSX.Element;
-  breadcrumbs?: boolean;
-  chip?: Chip;
-  disabled: boolean;
-  children?: Item[];
-};
+// Utils
+import { Item } from '../../../../../../../../utils/Types/Sidebar.types';
 
 interface NavItemProps {
   item: Item;
   level: number;
 }
 
-export const NavItem: FC<NavItemProps> = ({ item, level }) => {
+export const NavItem: FC<NavItemProps> = React.memo(({ item, level }) => {
   // const theme = useTheme();
   // const dispatch = useDispatch();
   // const { pathname } = useLocation();
@@ -150,4 +129,4 @@ export const NavItem: FC<NavItemProps> = ({ item, level }) => {
       )}
     </ListItemButton>
   );
-};
+});

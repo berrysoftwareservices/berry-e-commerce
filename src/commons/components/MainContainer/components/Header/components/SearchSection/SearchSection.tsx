@@ -1,17 +1,28 @@
-import { FC } from 'react';
-import { useState } from 'react';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import React, { useState, FC } from 'react';
 import PopupState, { bindPopper, bindToggle } from 'material-ui-popup-state';
 
 // Material UI
-import { useTheme, styled } from '@mui/material/styles';
-import { Avatar, Box, ButtonBase, Card, Grid, InputAdornment, OutlinedInput, Popper } from '@mui/material';
+import {
+  Avatar,
+  Box,
+  ButtonBase,
+  Card,
+  Grid,
+  InputAdornment,
+  OutlinedInput,
+  Popper,
+  useTheme,
+  styled,
+} from '@mui/material';
+import { shouldForwardProp } from '@mui/system';
+
+// Custom Components
+import { Transitions } from '../../../../../Transitions/Transitions';
 
 // assets
 import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons-react';
-import { shouldForwardProp } from '@mui/system';
-import { Transitions } from '../../../../../Transitions/Transitions';
 
-// styles
 const PopperStyle = styled(Popper, { shouldForwardProp })(({ theme }) => ({
   zIndex: 1100,
   width: '99%',
@@ -42,8 +53,10 @@ const OutlineInputStyle = styled(OutlinedInput, { shouldForwardProp })(({ theme 
 }));
 
 const HeaderAvatarStyle = styled(Avatar, { shouldForwardProp })(({ theme }) => ({
-  // ...theme.typography.commonAvatar,
-  // ...theme.typography.mediumAvatar,
+  // @ts-ignore
+  ...theme.typography.commonAvatar,
+  // @ts-ignore
+  ...theme.typography.mediumAvatar,
   background: theme.palette.secondary.light,
   color: theme.palette.secondary.dark,
   '&:hover': {
@@ -83,16 +96,22 @@ const MobileSearch: FC<MobileSearchProps> = ({ value, setValue }) => {
             <ButtonBase sx={{ borderRadius: '12px' }}>
               <Avatar
                 variant="rounded"
-                // sx={{
-                //   ...theme.typography.commonAvatar,
-                //   ...theme.typography.mediumAvatar,
-                //   background: theme.palette.orange.light,
-                //   color: theme.palette.orange.dark,
-                //   '&:hover': {
-                //     background: theme.palette.orange.dark,
-                //     color: theme.palette.orange.light,
-                //   },
-                // }}
+                sx={{
+                  // @ts-ignore
+                  ...theme.typography.commonAvatar,
+                  // @ts-ignore
+                  ...theme.typography.mediumAvatar,
+                  // @ts-ignore
+                  background: theme.palette.orange.light,
+                  // @ts-ignore
+                  color: theme.palette.orange.dark,
+                  '&:hover': {
+                    // @ts-ignore
+                    background: theme.palette.orange.dark,
+                    // @ts-ignore
+                    color: theme.palette.orange.light,
+                  },
+                }}
                 // {...bindToggle(popupState)}
               >
                 <IconX stroke={1.5} size="1.3rem" />
@@ -107,7 +126,7 @@ const MobileSearch: FC<MobileSearchProps> = ({ value, setValue }) => {
   );
 };
 
-export const SearchSection = () => {
+export const SearchSection = React.memo(() => {
   const theme = useTheme();
   const [value, setValue] = useState('');
 
@@ -180,4 +199,4 @@ export const SearchSection = () => {
       </Box>
     </>
   );
-};
+});

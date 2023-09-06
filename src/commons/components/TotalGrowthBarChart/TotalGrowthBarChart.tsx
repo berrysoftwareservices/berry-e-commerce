@@ -1,12 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { FC } from 'react';
-import { useState, useEffect } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import ApexCharts from 'apexcharts';
 import Chart from 'react-apexcharts';
 
 // Material UI
-import { useTheme } from '@mui/material/styles';
-import { Grid, MenuItem, TextField, Typography } from '@mui/material';
+import { Grid, MenuItem, TextField, Typography, useTheme } from '@mui/material';
 
 // Custom Components
 import { MainCard } from '../MainCard/MainCard';
@@ -33,7 +31,7 @@ const status = [
   },
 ];
 
-export const TotalGrowthBarChart: FC<CardProps> = ({ isLoading }) => {
+export const TotalGrowthBarChart: FC<CardProps> = React.memo(({ isLoading }) => {
   const [value, setValue] = useState('today');
   const theme = useTheme();
 
@@ -92,7 +90,6 @@ export const TotalGrowthBarChart: FC<CardProps> = ({ isLoading }) => {
       },
     };
 
-    // do not load chart when loading
     if (!isLoading) {
       ApexCharts.exec(`bar-chart`, 'updateOptions', newChartData);
     }
@@ -141,4 +138,4 @@ export const TotalGrowthBarChart: FC<CardProps> = ({ isLoading }) => {
       )}
     </>
   );
-};
+});

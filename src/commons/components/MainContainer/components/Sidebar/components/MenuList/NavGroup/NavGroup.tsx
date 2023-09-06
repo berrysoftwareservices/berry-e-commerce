@@ -1,30 +1,23 @@
-import { FC } from 'react';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import React, { FC } from 'react';
 
 // Material UI
-import { useTheme } from '@mui/material/styles';
-import { Divider, List, Typography } from '@mui/material';
+import { Divider, List, Typography, useTheme } from '@mui/material';
 
 // Custom Components
 import { NavCollapse } from '../NavCollapse/NavCollapse';
 import { NavItem } from '../NavItem/NavItem';
 
+// Utils
+import { Item } from '../../../../../../../../utils/Types/Sidebar.types';
+
 interface NavGroupProps {
-  item: {
-    id: string;
-    title?: string;
-    caption?: string;
-    type?: string;
-    url?: string;
-    icon?: JSX.Element;
-    breadcrumbs?: boolean;
-    children?: NavGroupProps[];
-  };
+  item: Item;
 }
 
-export const NavGroup: FC<NavGroupProps> = ({ item }) => {
+export const NavGroup: FC<NavGroupProps> = React.memo(({ item }) => {
   const theme = useTheme();
 
-  // menu list collapse & items
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const items = item?.children?.map((menu: any) => {
     switch (menu.type) {
@@ -46,16 +39,12 @@ export const NavGroup: FC<NavGroupProps> = ({ item }) => {
       <List
         subheader={
           item.title && (
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             <Typography variant="caption" sx={{ ...theme.typography.menuCaption }} display="block" gutterBottom>
-              {/* <Typography variant="caption" display="block" gutterBottom> */}
               {item.title}
               {item.caption && (
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 <Typography variant="caption" sx={{ ...theme.typography.subMenuCaption }} display="block" gutterBottom>
-                  {/* <Typography variant="caption" display="block" gutterBottom> */}
                   {item.caption}
                 </Typography>
               )}
@@ -66,8 +55,7 @@ export const NavGroup: FC<NavGroupProps> = ({ item }) => {
         {items}
       </List>
 
-      {/* group divider */}
       <Divider sx={{ mt: 0.25, mb: 1.25 }} />
     </>
   );
-};
+});

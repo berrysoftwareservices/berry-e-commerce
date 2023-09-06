@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { FC } from 'react';
+import React, { FC } from 'react';
 
-// Material UI
-import { styled, useTheme } from '@mui/material/styles';
-import { Avatar, Box, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
+// Material UI;
+import { Avatar, Box, List, ListItem, ListItemAvatar, ListItemText, Typography, useTheme, styled } from '@mui/material';
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
 
 // Custom Components
@@ -13,7 +12,7 @@ import { SkeletonTotalIncomeCard } from '../Skeleton/SkeletonTotalIncomeCard';
 // Utils
 import { CardProps } from '../../../../../utils/Interfaces/Card.Interface';
 
-export const CardWrapper = styled(MainCard)(({ theme }) => ({
+const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: theme.palette.primary.dark,
   color: theme.palette.primary.light,
   overflow: 'hidden',
@@ -42,7 +41,7 @@ export const CardWrapper = styled(MainCard)(({ theme }) => ({
   },
 }));
 
-export const TotalIncomeDarkCard: FC<CardProps> = ({ isLoading }) => {
+export const TotalIncomeDarkCard: FC<CardProps> = React.memo(({ isLoading }) => {
   const theme = useTheme();
 
   return (
@@ -94,4 +93,4 @@ export const TotalIncomeDarkCard: FC<CardProps> = ({ isLoading }) => {
       )}
     </>
   );
-};
+});

@@ -1,7 +1,9 @@
+import React from 'react';
+
 // Material UI
 import { Card, List, ListItem, ListItemAvatar, ListItemText, Skeleton } from '@mui/material';
 
-export const SkeletonTotalIncomeCard = () => (
+export const SkeletonTotalIncomeCard = React.memo(() => (
   <Card sx={{ p: 2 }}>
     <List sx={{ py: 0 }}>
       <ListItem alignItems="center" disableGutters sx={{ py: 0 }}>
@@ -16,4 +18,4 @@ export const SkeletonTotalIncomeCard = () => (
       </ListItem>
     </List>
   </Card>
-);
+));

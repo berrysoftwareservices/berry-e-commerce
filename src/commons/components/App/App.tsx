@@ -6,7 +6,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 
 // Custom Components
 import { AppRoutes } from '../Routes/Routes';
-import NavigationScroll from '../../../utils/NavigationScroll';
+import { NavigationScroll } from '../../../utils/NavigationScroll';
 
 // Stores
 import { useGeneralCustomizationStore } from '../../../stores/useGeneralCustomizationStore';

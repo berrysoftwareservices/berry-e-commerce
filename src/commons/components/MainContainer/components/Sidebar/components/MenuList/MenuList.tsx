@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import React from 'react';
+
 // Material UI
 import { Typography } from '@mui/material';
 
@@ -6,7 +8,7 @@ import { Typography } from '@mui/material';
 import { menuItems } from '../../../../utils/menu-items';
 import { NavGroup } from './NavGroup/NavGroup';
 
-export const MenuList = () => {
+export const MenuList = React.memo(() => {
   const navItems = menuItems.items.map((item) => {
     switch (item.type) {
       case 'group':
@@ -22,4 +24,4 @@ export const MenuList = () => {
   });
 
   return <>{navItems}</>;
-};
+});

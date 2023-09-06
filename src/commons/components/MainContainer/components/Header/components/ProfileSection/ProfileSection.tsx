@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useState, useRef } from 'react';
 import { shallow } from 'zustand/shallow';
 
 // Material UI
-import { useTheme } from '@mui/material/styles';
 import {
   Avatar,
   Box,
@@ -12,7 +12,6 @@ import {
   ClickAwayListener,
   Divider,
   Grid,
-  // Button,
   InputAdornment,
   List,
   ListItemButton,
@@ -25,23 +24,23 @@ import {
   TextField,
   Typography,
   useMediaQuery,
-  // IconButton,
+  useTheme,
 } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
-
-// Custom Components
-
-// assets
-import { Transitions } from '../../../../../Transitions/Transitions';
-import UserImage from '../../../../../../../assets/images/users/user-round.svg';
-import { useGeneralCustomizationStore } from '../../../../../../../stores/useGeneralCustomizationStore';
-
 import SearchIcon from '@mui/icons-material/Search';
 import PersonIcon from '@mui/icons-material/Person';
+
+// Custom Components
+import { Transitions } from '../../../../../Transitions/Transitions';
 import { UpgradePlanCard } from './components/UpgradePlanCard';
+
+// Stores
+import { useGeneralCustomizationStore } from '../../../../../../../stores/useGeneralCustomizationStore';
 import { useGeneralSettingsStore } from '../../../../../../../stores/useGeneralSettingsStore';
+
 // assets
+import UserImage from '../../../../../../../assets/images/users/user-round.svg';
 
 export const ProfileSection = React.memo(() => {
   const [searchTextInput, setSearchTextInput] = useState('');
@@ -86,7 +85,8 @@ export const ProfileSection = React.memo(() => {
             <Avatar
               src={UserImage}
               sx={{
-                // ...theme.typography.mediumAvatar,
+                // @ts-ignore
+                ...theme.typography.mediumAvatar,
                 margin: '8px 0 8px 8px !important',
                 cursor: 'pointer',
               }}

@@ -1,7 +1,7 @@
 import { ApexOptions } from 'apexcharts';
 import { chartType } from '../utils/Types/Dashboard.types';
 
-export const drawerWidth = '225px';
+export const drawerWidth = 280;
 export const gridSpacing = 3;
 
 export const ChartDataMonth = {

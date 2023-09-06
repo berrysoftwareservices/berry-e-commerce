@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 // Material UI
-import { styled, useTheme } from '@mui/material/styles';
 import {
   Avatar,
   Card,
@@ -15,6 +14,8 @@ import {
   ListItemText,
   Typography,
   linearProgressClasses,
+  useTheme,
+  styled,
 } from '@mui/material';
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
 
@@ -78,7 +79,7 @@ const LinearProgressWithLabel: FC<LinearProgressWithLabelProps> = ({ value, ...o
   );
 };
 
-export const MenuCard = () => {
+export const MenuCard = React.memo(() => {
   const theme = useTheme();
 
   return (
@@ -123,4 +124,4 @@ export const MenuCard = () => {
       </CardContent>
     </CardStyle>
   );
-};
+});

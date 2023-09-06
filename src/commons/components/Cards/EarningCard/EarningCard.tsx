@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 
 // Material UI
-import { styled, useTheme } from '@mui/material/styles';
-import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
+import { Avatar, Box, Grid, Menu, MenuItem, Typography, useTheme, styled } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import GetAppTwoToneIcon from '@mui/icons-material/GetAppOutlined';
@@ -21,7 +20,7 @@ import { CardProps } from '../../../../utils/Interfaces/Card.Interface';
 // assets
 import EarningIcon from '../../../../assets/images/icons/earning.svg';
 
-export const CardWrapper = styled(MainCard)(({ theme }) => ({
+const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.dark,
   color: '#fff',
   overflow: 'hidden',
@@ -59,7 +58,7 @@ export const CardWrapper = styled(MainCard)(({ theme }) => ({
   },
 }));
 
-export const EarningCard: FC<CardProps> = ({ isLoading }) => {
+export const EarningCard: FC<CardProps> = React.memo(({ isLoading }) => {
   const theme = useTheme();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -191,4 +190,4 @@ export const EarningCard: FC<CardProps> = ({ isLoading }) => {
       )}
     </>
   );
-};
+});

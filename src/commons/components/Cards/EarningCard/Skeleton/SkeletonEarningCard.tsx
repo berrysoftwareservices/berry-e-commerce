@@ -1,8 +1,9 @@
-// Material UI
-import { Card, CardContent, Grid } from '@mui/material';
-import Skeleton from '@mui/material/Skeleton';
+import React from 'react';
 
-export const SkeletonEarningCard = () => (
+// Material UI
+import { Card, CardContent, Grid, Skeleton } from '@mui/material';
+
+export const SkeletonEarningCard = React.memo(() => (
   <Card>
     <CardContent>
       <Grid container direction="column">
@@ -25,4 +26,4 @@ export const SkeletonEarningCard = () => (
       </Grid>
     </CardContent>
   </Card>
-);
+));

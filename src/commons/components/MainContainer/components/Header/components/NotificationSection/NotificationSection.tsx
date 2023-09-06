@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useState, useRef } from 'react';
 import { shallow } from 'zustand/shallow';
 import { Link } from 'react-router-dom';
 
 // Material UI
-import { useTheme } from '@mui/material/styles';
 import {
   Avatar,
   Box,
@@ -20,17 +20,19 @@ import {
   TextField,
   Typography,
   useMediaQuery,
+  useTheme,
 } from '@mui/material';
 
 // Custom Components
+import { NotificationList } from './components/NotificationList/NotificationList';
+import { Transitions } from '../../../../../Transitions/Transitions';
+
+// Stores
+import { useGeneralSettingsStore } from '../../../../../../../stores/useGeneralSettingsStore';
 
 // assets
 import { IconBell } from '@tabler/icons-react';
-import { Transitions } from '../../../../../Transitions/Transitions';
-import { NotificationList } from './components/NotificationList/NotificationList';
-import { useGeneralSettingsStore } from '../../../../../../../stores/useGeneralSettingsStore';
 
-// notification status options
 const status = [
   {
     value: 'all',
@@ -83,8 +85,10 @@ export const NotificationSection = React.memo(() => {
           <Avatar
             variant="rounded"
             sx={{
-              // ...theme.typography.commonAvatar,
-              // ...theme.typography.mediumAvatar,
+              // @ts-ignore
+              ...theme.typography.commonAvatar,
+              // @ts-ignore
+              ...theme.typography.mediumAvatar,
               transition: 'all .2s ease-in-out',
               background: theme.palette.secondary.light,
               color: theme.palette.secondary.dark,

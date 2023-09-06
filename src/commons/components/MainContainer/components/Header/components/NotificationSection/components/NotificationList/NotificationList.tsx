@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import React from 'react';
+
 // Material UI
-import { useTheme, styled } from '@mui/material/styles';
 import {
   Avatar,
   Button,
@@ -15,13 +17,14 @@ import {
   ListItemText,
   Stack,
   Typography,
+  useTheme,
+  styled,
 } from '@mui/material';
 
 // assets
 import { IconBrandTelegram, IconBuildingStore, IconMailbox, IconPhoto } from '@tabler/icons-react';
 import User1 from '../../../../../../../../../assets/images/users/user-round.svg';
 
-// styles
 const ListItemWrapper = styled('div')(({ theme }) => ({
   cursor: 'pointer',
   padding: 16,
@@ -33,7 +36,7 @@ const ListItemWrapper = styled('div')(({ theme }) => ({
   },
 }));
 
-export const NotificationList = () => {
+export const NotificationList = React.memo(() => {
   const theme = useTheme();
 
   const chipSX = {
@@ -42,8 +45,10 @@ export const NotificationList = () => {
   };
   const chipErrorSX = {
     ...chipSX,
-    // color: theme.palette.orange.dark,
-    // backgroundColor: theme.palette.orange.light,
+    // @ts-ignore
+    color: theme.palette.orange.dark,
+    // @ts-ignore
+    backgroundColor: theme.palette.orange.light,
     marginRight: '5px',
   };
 
@@ -277,4 +282,4 @@ export const NotificationList = () => {
       </ListItemWrapper>
     </List>
   );
-};
+});

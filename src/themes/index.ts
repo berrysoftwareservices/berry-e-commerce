@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material';
 
 // assets
 // import colors from 'assets/scss/_themes-vars.module.scss';

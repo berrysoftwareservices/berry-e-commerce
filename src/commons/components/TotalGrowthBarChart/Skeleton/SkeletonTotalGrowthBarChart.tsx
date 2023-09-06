@@ -1,11 +1,12 @@
+import React from 'react';
+
 // Material UI
-import { Card, CardContent, Grid } from '@mui/material';
-import Skeleton from '@mui/material/Skeleton';
+import { Card, CardContent, Grid, Skeleton } from '@mui/material';
 
 // Constants
 import { gridSpacing } from '../../../../constants';
 
-export const SkeletonTotalGrowthBarChart = () => (
+export const SkeletonTotalGrowthBarChart = React.memo(() => (
   <Card>
     <CardContent>
       <Grid container spacing={gridSpacing}>
@@ -32,4 +33,4 @@ export const SkeletonTotalGrowthBarChart = () => (
       </Grid>
     </CardContent>
   </Card>
-);
+));

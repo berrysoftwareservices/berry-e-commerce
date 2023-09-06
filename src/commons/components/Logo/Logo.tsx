@@ -1,5 +1,7 @@
+import React from 'react';
+
 // Material UI
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from '@mui/material';
 
 /**
  * if you want to use image instead of <svg> uncomment following.
@@ -9,7 +11,7 @@ import { useTheme } from '@mui/material/styles';
  *
  */
 
-export const Logo = () => {
+export const Logo = React.memo(() => {
   const theme = useTheme();
 
   return (
@@ -62,4 +64,4 @@ export const Logo = () => {
       />
     </svg>
   );
-};
+});

@@ -1,11 +1,12 @@
+import React from 'react';
+
 // Material UI
-import { Card, CardContent, Grid } from '@mui/material';
-import Skeleton from '@mui/material/Skeleton';
+import { Card, CardContent, Grid, Skeleton } from '@mui/material';
 
 // Constants
 import { gridSpacing } from '../../../../../constants';
 
-export const SkeletonPopularCard = () => (
+export const SkeletonPopularCard = React.memo(() => (
   <Card>
     <CardContent>
       <Grid container spacing={gridSpacing}>
@@ -148,4 +149,4 @@ export const SkeletonPopularCard = () => (
       <Skeleton variant="rectangular" height={25} width={75} />
     </CardContent>
   </Card>
-);
+));

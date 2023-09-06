@@ -1,11 +1,10 @@
-import { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { shallow } from 'zustand/shallow';
 import { useWindowHeight } from '@react-hook/window-size';
 
 // Material UI
-import { AppBar, Box, Stack, Toolbar, useMediaQuery } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { AppBar, Box, Stack, Toolbar, useMediaQuery, useTheme } from '@mui/material';
 
 // Custom Components
 import { Customization } from './components/Customization/Customization';
@@ -17,7 +16,7 @@ import { PageInProgress } from '../../../pages/PageInProgress/PageInProgress';
 // Stores
 import { useGeneralCustomizationStore } from '../../../stores/useGeneralCustomizationStore';
 
-export const MainContainer = () => {
+export const MainContainer = React.memo(() => {
   const theme = useTheme();
   const appBarRef = useRef<HTMLDivElement>(null);
   const [appBarHeight, setAppBarHeight] = useState(0);
@@ -85,4 +84,4 @@ export const MainContainer = () => {
       <Customization />
     </Box>
   );
-};
+});

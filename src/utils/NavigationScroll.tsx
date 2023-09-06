@@ -1,12 +1,11 @@
-import { FC } from 'react';
-import { useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 interface NavigationScrollProps {
   children?: React.ReactNode;
 }
 
-const NavigationScroll: FC<NavigationScrollProps> = ({ children }) => {
+export const NavigationScroll: FC<NavigationScrollProps> = React.memo(({ children }) => {
   const location = useLocation();
   const { pathname } = location;
 
@@ -19,6 +18,4 @@ const NavigationScroll: FC<NavigationScrollProps> = ({ children }) => {
   }, [pathname]);
 
   return children || null;
-};
-
-export default NavigationScroll;
+});

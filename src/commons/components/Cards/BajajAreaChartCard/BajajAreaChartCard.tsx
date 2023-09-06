@@ -1,16 +1,15 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Chart from 'react-apexcharts';
 import ApexCharts from 'apexcharts';
 
 // Material UI
-import { useTheme } from '@mui/material/styles';
-import { Card, Grid, Typography } from '@mui/material';
+import { Card, Grid, Typography, useTheme } from '@mui/material';
 
 // Constants
 import { ChartDataArea } from '../../../../constants';
 
-export const BajajAreaChartCard = () => {
+export const BajajAreaChartCard = React.memo(() => {
   const theme = useTheme();
 
   // @ts-ignore
@@ -53,4 +52,4 @@ export const BajajAreaChartCard = () => {
       <Chart {...ChartDataArea} />
     </Card>
   );
-};
+});

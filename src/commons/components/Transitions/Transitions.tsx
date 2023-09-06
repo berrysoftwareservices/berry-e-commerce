@@ -1,8 +1,7 @@
-import { forwardRef, FC } from 'react';
+import React, { forwardRef, FC } from 'react';
 
 // Material UI
-import { Collapse, Fade, Box, Grow, Slide, Zoom } from '@mui/material';
-import { SxProps, Theme } from '@mui/material/styles';
+import { Collapse, Fade, Box, Grow, Slide, Zoom, SxProps, Theme } from '@mui/material';
 
 interface TransitionProps {
   children: JSX.Element;
@@ -12,8 +11,8 @@ interface TransitionProps {
   sx?: SxProps<Theme>;
 }
 
-export const Transitions: FC<TransitionProps> = forwardRef(
-  ({ children, position = 'top-left', type = 'grow', direction = 'up', ...others }, ref) => {
+export const Transitions: FC<TransitionProps> = React.memo(
+  forwardRef(({ children, position = 'top-left', type = 'grow', direction = 'up', ...others }, ref) => {
     let positionSX = {
       transformOrigin: '0 0 0',
     };
@@ -96,5 +95,5 @@ export const Transitions: FC<TransitionProps> = forwardRef(
         )}
       </Box>
     );
-  },
+  }),
 );

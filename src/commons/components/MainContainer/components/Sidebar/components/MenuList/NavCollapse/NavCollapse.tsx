@@ -1,11 +1,10 @@
-import { FC } from 'react';
-import { useEffect, useState } from 'react';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import React, { FC, useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import { shallow } from 'zustand/shallow';
 
 // Material UI
-import { useTheme } from '@mui/material/styles';
-import { Collapse, List, ListItemButton, ListItemText, ListItemIcon, Typography } from '@mui/material';
+import { Collapse, List, ListItemButton, ListItemText, ListItemIcon, Typography, useTheme } from '@mui/material';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 // Custom Components
@@ -17,26 +16,15 @@ import { useGeneralCustomizationStore } from '../../../../../../../../stores/use
 // assets
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
 
-type Item = {
-  id: string;
-  title?: string;
-  target?: string;
-  external?: string;
-  caption?: string;
-  type?: string;
-  url?: string;
-  icon?: JSX.Element;
-  breadcrumbs?: boolean;
-  disabled: boolean;
-  children?: Item[];
-};
+// Utils
+import { Item } from '../../../../../../../../utils/Types/Sidebar.types';
 
 interface NavCollapseProps {
   menu: Item;
   level: number;
 }
 
-export const NavCollapse: FC<NavCollapseProps> = ({ menu, level }) => {
+export const NavCollapse: FC<NavCollapseProps> = React.memo(({ menu, level }) => {
   const theme = useTheme();
   // const navigate = useNavigate();
 
@@ -88,7 +76,6 @@ export const NavCollapse: FC<NavCollapseProps> = ({ menu, level }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname, menu.children]);
 
-  // menu collapse & item
   const menus = menu.children?.map((item) => {
     switch (item.type) {
       case 'collapse':
@@ -106,7 +93,6 @@ export const NavCollapse: FC<NavCollapseProps> = ({ menu, level }) => {
 
   const Icon = menu.icon;
   const menuIcon = menu.icon ? (
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     <Icon stroke={1.5} size="1.3rem" />
   ) : (
@@ -142,8 +128,8 @@ export const NavCollapse: FC<NavCollapseProps> = ({ menu, level }) => {
           }
           secondary={
             menu.caption && (
-              // <Typography variant="caption" sx={{ ...theme.typography.subMenuCaption }} display="block" gutterBottom>
-              <Typography variant="caption" display="block" gutterBottom>
+              // @ts-ignore
+              <Typography variant="caption" sx={{ ...theme.typography.subMenuCaption }} display="block" gutterBottom>
                 {menu.caption}
               </Typography>
             )
@@ -178,4 +164,4 @@ export const NavCollapse: FC<NavCollapseProps> = ({ menu, level }) => {
       </Collapse>
     </>
   );
-};
+});

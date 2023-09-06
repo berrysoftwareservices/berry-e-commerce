@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Material UI
 import { Stack } from '@mui/material';
@@ -6,9 +6,7 @@ import { Stack } from '@mui/material';
 // Custom Components
 import { LinearProgressWithLabel } from '../../commons/components/LinearProgressWithLabel/LinearProgressWithLabel';
 
-interface PageInProgressProps {}
-
-export const PageInProgress: FC<PageInProgressProps> = React.memo(() => {
+export const PageInProgress = React.memo(() => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {

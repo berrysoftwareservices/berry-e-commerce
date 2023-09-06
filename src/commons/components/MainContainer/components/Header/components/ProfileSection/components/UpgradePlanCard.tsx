@@ -1,10 +1,8 @@
-// material-ui
-import { styled } from '@mui/material/styles';
-import { Button, Card, CardContent, Grid, Stack, Typography } from '@mui/material';
+import React from 'react';
 
-// project imports
+// Material UI
+import { Button, Card, CardContent, Grid, Stack, Typography, styled } from '@mui/material';
 
-// styles
 const CardStyle = styled(Card)(({ theme }) => ({
   background: '#ddd0f5',
   marginTop: '16px',
@@ -34,11 +32,8 @@ const CardStyle = styled(Card)(({ theme }) => ({
     right: '-70px',
   },
 }));
-console.log(CardStyle);
 
-// ==============================|| PROFILE MENU - UPGRADE PLAN CARD ||============================== //
-
-export const UpgradePlanCard = () => (
+export const UpgradePlanCard = React.memo(() => (
   <CardStyle>
     <CardContent>
       <Grid container direction="column" spacing={2}>
@@ -61,4 +56,4 @@ export const UpgradePlanCard = () => (
       </Grid>
     </CardContent>
   </CardStyle>
-);
+));

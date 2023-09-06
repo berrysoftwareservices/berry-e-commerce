@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { FC } from 'react';
-import { useState } from 'react';
+import React, { FC, useState } from 'react';
 import Chart from 'react-apexcharts';
 
 // Material UI
-import { useTheme, styled } from '@mui/material/styles';
-import { Avatar, Box, Button, Grid, Typography } from '@mui/material';
+import { Avatar, Box, Button, Grid, Typography, useTheme, styled } from '@mui/material';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMall';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
@@ -17,7 +15,7 @@ import { ChartDataMonth, ChartDataYear } from '../../../../constants';
 // Utils
 import { CardProps } from '../../../../utils/Interfaces/Card.Interface';
 
-export const CardWrapper = styled(MainCard)(({ theme }) => ({
+const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: theme.palette.primary.dark,
   color: '#fff',
   overflow: 'hidden',
@@ -61,7 +59,7 @@ export const CardWrapper = styled(MainCard)(({ theme }) => ({
   },
 }));
 
-export const TotalOrderLineChartCard: FC<CardProps> = ({ isLoading }) => {
+export const TotalOrderLineChartCard: FC<CardProps> = React.memo(({ isLoading }) => {
   const theme = useTheme();
 
   const [timeValue, setTimeValue] = useState(false);
@@ -173,4 +171,4 @@ export const TotalOrderLineChartCard: FC<CardProps> = ({ isLoading }) => {
       )}
     </>
   );
-};
+});
