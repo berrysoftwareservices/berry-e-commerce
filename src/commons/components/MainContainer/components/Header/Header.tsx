@@ -3,15 +3,13 @@ import React, { FC } from 'react';
 
 // Material UI
 import { Avatar, Box, ButtonBase, useTheme } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 
 // Custom Components
 import { SearchSection } from './components/SearchSection/SearchSection';
 import { NotificationSection } from './components/NotificationSection/NotificationSection';
 import { LogoSection } from '../LogoSection/LogoSection';
 import { ProfileSection } from './components/ProfileSection/ProfileSection';
-
-// assets
-import { IconMenu2 } from '@tabler/icons-react';
 
 interface HeaderProps {
   handleLeftDrawerToggle: () => void;
@@ -53,7 +51,7 @@ export const Header: FC<HeaderProps> = React.memo(({ handleLeftDrawerToggle }) =
             onClick={handleLeftDrawerToggle}
             color="inherit"
           >
-            <IconMenu2 stroke={1.5} size="1.3rem" />
+            <MenuIcon />
           </Avatar>
         </ButtonBase>
       </Box>

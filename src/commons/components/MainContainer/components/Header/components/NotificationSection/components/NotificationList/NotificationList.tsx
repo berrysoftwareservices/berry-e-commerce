@@ -20,9 +20,14 @@ import {
   useTheme,
   styled,
 } from '@mui/material';
+import {
+  Telegram as TelegramIcon,
+  Storefront as StorefrontIcon,
+  Email as EmailIcon,
+  Image as ImageIcon,
+} from '@mui/icons-material';
 
 // assets
-import { IconBrandTelegram, IconBuildingStore, IconMailbox, IconPhoto } from '@tabler/icons-react';
 import User1 from '../../../../../../../../../assets/images/users/user-round.svg';
 
 const ListItemWrapper = styled('div')(({ theme }) => ({
@@ -130,7 +135,7 @@ export const NotificationList = React.memo(() => {
                 borderColor: theme.palette.success.main,
               }}
             >
-              <IconBuildingStore stroke={1.5} size="1.3rem" />
+              <StorefrontIcon />
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary={<Typography variant="subtitle1">Store Verification Done</Typography>} />
@@ -169,7 +174,7 @@ export const NotificationList = React.memo(() => {
                 borderColor: theme.palette.primary.main,
               }}
             >
-              <IconMailbox stroke={1.5} size="1.3rem" />
+              <EmailIcon />
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary={<Typography variant="subtitle1">Check Your Mail.</Typography>} />
@@ -192,7 +197,7 @@ export const NotificationList = React.memo(() => {
           <Grid item xs={12}>
             <Grid container>
               <Grid item>
-                <Button variant="contained" disableElevation endIcon={<IconBrandTelegram stroke={1.5} size="1.3rem" />}>
+                <Button variant="contained" disableElevation endIcon={<TelegramIcon />}>
                   Mail
                 </Button>
               </Grid>
@@ -238,7 +243,7 @@ export const NotificationList = React.memo(() => {
                     <Grid container direction="column">
                       <Grid item xs={12}>
                         <Stack direction="row" spacing={2}>
-                          <IconPhoto stroke={1.5} size="1.3rem" />
+                          <ImageIcon />
                           <Typography variant="subtitle1">demo.jpg</Typography>
                         </Stack>
                       </Grid>

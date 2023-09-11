@@ -22,6 +22,7 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 // Custom Components
 import { NotificationList } from './components/NotificationList/NotificationList';
@@ -29,9 +30,6 @@ import { Transitions } from '../../../../../Transitions/Transitions';
 
 // Stores
 import { useGeneralSettingsStore } from '../../../../../../../stores/useGeneralSettingsStore';
-
-// assets
-import { IconBell } from '@tabler/icons-react';
 
 const status = [
   {
@@ -103,7 +101,7 @@ export const NotificationSection = React.memo(() => {
             onClick={() => setOpenNotificationSettings(true)}
             color="inherit"
           >
-            <IconBell stroke={1.5} size="1.3rem" />
+            <NotificationsIcon />
           </Avatar>
         </ButtonBase>
       </Box>

@@ -16,12 +16,10 @@ import {
   styled,
 } from '@mui/material';
 import { shouldForwardProp } from '@mui/system';
+import { Tune as TuneIcon, Search as SearchIcon, Close as CloseIcon } from '@mui/icons-material';
 
 // Custom Components
 import { Transitions } from '../../../../../Transitions/Transitions';
-
-// assets
-import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons-react';
 
 const PopperStyle = styled(Popper, { shouldForwardProp })(({ theme }) => ({
   zIndex: 1100,
@@ -82,14 +80,14 @@ const MobileSearch: FC<MobileSearchProps> = ({ value, setValue }) => {
       placeholder="Search"
       startAdornment={
         <InputAdornment position="start">
-          <IconSearch stroke={1.5} size="1rem" color={theme.palette.grey[500]} />
+          <SearchIcon color="info" />
         </InputAdornment>
       }
       endAdornment={
         <InputAdornment position="end">
           <ButtonBase sx={{ borderRadius: '12px' }}>
             <HeaderAvatarStyle variant="rounded">
-              <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
+              <TuneIcon />
             </HeaderAvatarStyle>
           </ButtonBase>
           <Box sx={{ ml: 2 }}>
@@ -114,7 +112,7 @@ const MobileSearch: FC<MobileSearchProps> = ({ value, setValue }) => {
                 }}
                 // {...bindToggle(popupState)}
               >
-                <IconX stroke={1.5} size="1.3rem" />
+                <CloseIcon />
               </Avatar>
             </ButtonBase>
           </Box>
@@ -139,7 +137,7 @@ export const SearchSection = React.memo(() => {
               <Box sx={{ ml: 2 }}>
                 <ButtonBase sx={{ borderRadius: '12px' }}>
                   <HeaderAvatarStyle variant="rounded" {...bindToggle(popupState)}>
-                    <IconSearch stroke={1.5} size="1.2rem" />
+                    <SearchIcon />
                   </HeaderAvatarStyle>
                 </ButtonBase>
               </Box>
@@ -181,14 +179,14 @@ export const SearchSection = React.memo(() => {
           placeholder="Search"
           startAdornment={
             <InputAdornment position="start">
-              <IconSearch stroke={1.5} size="1rem" color={theme.palette.grey[500]} />
+              <SearchIcon color="info" />
             </InputAdornment>
           }
           endAdornment={
             <InputAdornment position="end">
               <ButtonBase sx={{ borderRadius: '12px' }}>
                 <HeaderAvatarStyle variant="rounded">
-                  <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
+                  <TuneIcon />
                 </HeaderAvatarStyle>
               </ButtonBase>
             </InputAdornment>
