@@ -10,13 +10,13 @@ import {
   Card,
   Grid,
   InputAdornment,
-  OutlinedInput,
+  TextField,
   Popper,
   useTheme,
   styled,
 } from '@mui/material';
 import { shouldForwardProp } from '@mui/system';
-import { Tune as TuneIcon, Search as SearchIcon, Close as CloseIcon } from '@mui/icons-material';
+import { Search as SearchIcon, Close as CloseIcon } from '@mui/icons-material';
 
 // Custom Components
 import { Transitions } from '../../../../../Transitions/Transitions';
@@ -31,14 +31,12 @@ const PopperStyle = styled(Popper, { shouldForwardProp })(({ theme }) => ({
   },
 }));
 
-const OutlineInputStyle = styled(OutlinedInput, { shouldForwardProp })(({ theme }) => ({
+const OutlineInputStyle = styled(TextField, { shouldForwardProp })(({ theme }) => ({
   width: 434,
-  marginLeft: 16,
-  paddingLeft: 16,
-  paddingRight: 16,
+  padding: '8px',
+  marginLeft: '18px',
   '& input': {
     background: 'transparent !important',
-    paddingLeft: '4px !important',
   },
   [theme.breakpoints.down('lg')]: {
     width: 250,
@@ -76,48 +74,46 @@ const MobileSearch: FC<MobileSearchProps> = ({ value, setValue }) => {
     <OutlineInputStyle
       id="input-search-header"
       value={value}
+      size="small"
       onChange={(e) => setValue(e.target.value)}
       placeholder="Search"
-      startAdornment={
-        <InputAdornment position="start">
-          <SearchIcon color="info" />
-        </InputAdornment>
-      }
-      endAdornment={
-        <InputAdornment position="end">
-          <ButtonBase sx={{ borderRadius: '12px' }}>
-            <HeaderAvatarStyle variant="rounded">
-              <TuneIcon />
-            </HeaderAvatarStyle>
-          </ButtonBase>
-          <Box sx={{ ml: 2 }}>
-            <ButtonBase sx={{ borderRadius: '12px' }}>
-              <Avatar
-                variant="rounded"
-                sx={{
-                  // @ts-ignore
-                  ...theme.typography.commonAvatar,
-                  // @ts-ignore
-                  ...theme.typography.mediumAvatar,
-                  // @ts-ignore
-                  background: theme.palette.orange.light,
-                  // @ts-ignore
-                  color: theme.palette.orange.dark,
-                  '&:hover': {
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <SearchIcon color="info" />
+          </InputAdornment>
+        ),
+        endAdornment: (
+          <InputAdornment position="end">
+            <Box sx={{ ml: 2 }}>
+              <ButtonBase sx={{ borderRadius: '12px' }}>
+                <Avatar
+                  variant="rounded"
+                  sx={{
                     // @ts-ignore
-                    background: theme.palette.orange.dark,
+                    ...theme.typography.commonAvatar,
                     // @ts-ignore
-                    color: theme.palette.orange.light,
-                  },
-                }}
-                // {...bindToggle(popupState)}
-              >
-                <CloseIcon />
-              </Avatar>
-            </ButtonBase>
-          </Box>
-        </InputAdornment>
-      }
+                    ...theme.typography.mediumAvatar,
+                    // @ts-ignore
+                    background: theme.palette.orange.light,
+                    // @ts-ignore
+                    color: theme.palette.orange.dark,
+                    '&:hover': {
+                      // @ts-ignore
+                      background: theme.palette.orange.dark,
+                      // @ts-ignore
+                      color: theme.palette.orange.light,
+                    },
+                  }}
+                  // {...bindToggle(popupState)}
+                >
+                  <CloseIcon />
+                </Avatar>
+              </ButtonBase>
+            </Box>
+          </InputAdornment>
+        ),
+      }}
       aria-describedby="search-helper-text"
       inputProps={{ 'aria-label': 'weight' }}
     />
@@ -177,20 +173,13 @@ export const SearchSection = React.memo(() => {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder="Search"
-          startAdornment={
-            <InputAdornment position="start">
-              <SearchIcon color="info" />
-            </InputAdornment>
-          }
-          endAdornment={
-            <InputAdornment position="end">
-              <ButtonBase sx={{ borderRadius: '12px' }}>
-                <HeaderAvatarStyle variant="rounded">
-                  <TuneIcon />
-                </HeaderAvatarStyle>
-              </ButtonBase>
-            </InputAdornment>
-          }
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon color="info" />
+              </InputAdornment>
+            ),
+          }}
           aria-describedby="search-helper-text"
           inputProps={{ 'aria-label': 'weight' }}
         />
