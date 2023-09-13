@@ -1,15 +1,13 @@
 import { FC } from 'react';
-import PerfectScrollbar from 'react-perfect-scrollbar';
-import { BrowserView, MobileView } from 'react-device-detect';
 
 // Material UI
 import { useTheme } from '@mui/material/styles';
-import { Box, Drawer, Stack, useMediaQuery, Chip } from '@mui/material';
+import { Drawer, Stack, useMediaQuery } from '@mui/material';
 
 // Custom Components
 import { MenuList } from './components/MenuList/MenuList';
-import { LogoSection } from '../LogoSection/LogoSection';
-import { MenuCard } from './components/MenuCard/MenuCard';
+// import { LogoSection } from '../LogoSection/LogoSection';
+// import { MenuCard } from './components/MenuCard/MenuCard';
 
 // Constants
 import { drawerWidth } from '../../../../../constants';
@@ -23,46 +21,10 @@ export const Sidebar: FC<SideBarProps> = ({ drawerOpen, drawerToggle }) => {
   const theme = useTheme();
   const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
 
-  const drawer = (
-    <>
-      <Box sx={{ display: { xs: 'block', md: 'none' } }}>
-        <Box sx={{ display: 'flex', p: 2, mx: 'auto' }}>
-          <LogoSection />
-        </Box>
-      </Box>
-      <BrowserView>
-        <PerfectScrollbar
-          component="div"
-          style={{
-            height: !matchUpMd ? 'calc(100vh - 56px)' : 'calc(100vh - 88px)',
-            paddingLeft: '16px',
-            paddingRight: '16px',
-          }}
-        >
-          <MenuList />
-          <MenuCard />
-          <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
-            <Chip label="0.0.1" disabled color="secondary" size="small" sx={{ cursor: 'pointer' }} />
-          </Stack>
-        </PerfectScrollbar>
-      </BrowserView>
-      <MobileView>
-        <Box sx={{ px: 2 }}>
-          <MenuList />
-          <MenuCard />
-          <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
-            <Chip label="0.0.1" disabled color="secondary" size="small" sx={{ cursor: 'pointer' }} />
-          </Stack>
-        </Box>
-      </MobileView>
-    </>
-  );
-
   const container = window !== undefined ? () => window.document.body : undefined;
 
   return (
-    <Box
-      component="nav"
+    <Stack
       sx={{ flexShrink: { md: 0 }, width: matchUpMd ? (drawerOpen ? drawerWidth : 'auto') : 'auto' }}
       aria-label="mailbox folders"
     >
@@ -86,8 +48,29 @@ export const Sidebar: FC<SideBarProps> = ({ drawerOpen, drawerToggle }) => {
         ModalProps={{ keepMounted: true }}
         color="inherit"
       >
-        {drawer}
+        <Stack height="100%">
+          {/* <Stack sx={{ display: { xs: 'block', md: 'none' } }}>
+        <Stack sx={{ p: 2, mx: 'auto' }}>
+          <LogoSection />
+        </Stack>
+      </Stack> */}
+          <Stack
+            sx={{
+              maxHeight: !matchUpMd ? 'calc(100vh - 76px)' : 'calc(100vh - 128px)',
+              height: '100%',
+              paddingLeft: '16px',
+              paddingRight: '16px',
+              overflowY: 'auto',
+            }}
+          >
+            <MenuList />
+            {/* <MenuCard /> */}
+            {/* <Stack  direction= 'row' justifyContent="center" mt={2} mb={2}>
+            <Chip label="0.0.1" disabled color="secondary" size="small" sx={{ cursor: 'pointer' }} />
+          </Stack> */}
+          </Stack>
+        </Stack>
       </Drawer>
-    </Box>
+    </Stack>
   );
 };

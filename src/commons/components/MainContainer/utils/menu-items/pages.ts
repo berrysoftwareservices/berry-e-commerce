@@ -1,10 +1,7 @@
 // assets
-import { IconKey } from '@tabler/icons-react';
-
-// constant
-const icons = {
-  IconKey,
-};
+import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
+import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 
 export const pages = {
   id: 'pages',
@@ -15,23 +12,23 @@ export const pages = {
       id: 'authentication',
       title: 'Authentication',
       type: 'collapse',
-      icon: icons.IconKey,
+      icon: VpnKeyOutlinedIcon,
       children: [
         {
           id: 'login3',
           title: 'Login',
           type: 'item',
+          icon: LockOpenOutlinedIcon,
           url: '/pages/login/login3',
           target: true,
-          disabled: true,
         },
         {
           id: 'register3',
           title: 'Register',
           type: 'item',
+          icon: ManageAccountsIcon,
           url: '/pages/register/register3',
           target: true,
-          disabled: true,
         },
       ],
     },

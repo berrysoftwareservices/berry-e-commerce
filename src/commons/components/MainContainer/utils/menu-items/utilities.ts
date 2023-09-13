@@ -1,12 +1,10 @@
 // assets
-import { IconTypography, IconPalette, IconShadow, IconWindmill } from '@tabler/icons-react';
-
-const icons = {
-  IconTypography,
-  IconPalette,
-  IconShadow,
-  IconWindmill,
-};
+import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
+import SortByAlphaOutlinedIcon from '@mui/icons-material/SortByAlphaOutlined';
+import AddToPhotosOutlinedIcon from '@mui/icons-material/AddToPhotosOutlined';
+import BrowseGalleryOutlinedIcon from '@mui/icons-material/BrowseGalleryOutlined';
+import TocOutlinedIcon from '@mui/icons-material/TocOutlined';
+import AvTimerOutlinedIcon from '@mui/icons-material/AvTimerOutlined';
 
 export const utilities = {
   id: 'utilities',
@@ -18,7 +16,7 @@ export const utilities = {
       title: 'Typography',
       type: 'item',
       url: '/utils/util-typography',
-      icon: icons.IconTypography,
+      icon: SortByAlphaOutlinedIcon,
       breadcrumbs: false,
     },
     {
@@ -26,7 +24,7 @@ export const utilities = {
       title: 'Color',
       type: 'item',
       url: '/utils/util-color',
-      icon: icons.IconPalette,
+      icon: ColorLensOutlinedIcon,
       breadcrumbs: false,
     },
     {
@@ -34,19 +32,20 @@ export const utilities = {
       title: 'Shadow',
       type: 'item',
       url: '/utils/util-shadow',
-      icon: icons.IconShadow,
+      icon: BrowseGalleryOutlinedIcon,
       breadcrumbs: false,
     },
     {
       id: 'icons',
       title: 'Icons',
       type: 'collapse',
-      icon: icons.IconWindmill,
+      icon: AddToPhotosOutlinedIcon,
       children: [
         {
           id: 'tabler-icons',
           title: 'Tabler Icons',
           type: 'item',
+          icon: TocOutlinedIcon,
           url: '/icons/tabler-icons',
           breadcrumbs: false,
         },
@@ -56,6 +55,7 @@ export const utilities = {
           type: 'item',
           external: true,
           target: '_blank',
+          icon: AvTimerOutlinedIcon,
           url: 'https://mui.com/material-ui/material-icons/',
           breadcrumbs: false,
         },
