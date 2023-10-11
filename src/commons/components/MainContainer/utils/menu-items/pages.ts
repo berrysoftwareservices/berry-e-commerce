@@ -19,7 +19,7 @@ export const pages = {
           title: 'Login',
           type: 'item',
           icon: LockOpenOutlinedIcon,
-          url: '/pages/login/login3',
+          url: '/login',
           target: true,
         },
         {

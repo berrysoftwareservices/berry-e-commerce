@@ -14,5 +14,13 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    indent: ['warn', 2, { SwitchCase: 1 }],
+    'no-multiple-empty-lines': ['warn', { max: 1, maxBOF: 0, maxEOF: 0 }],
+    'object-curly-newline': ['warn', {
+      ObjectExpression: { consistent: true },
+      ObjectPattern: { consistent: true },
+      ImportDeclaration: { consistent: true },
+      ExportDeclaration: { multiline: true, minProperties: 3 }
+    }],
   },
 }
