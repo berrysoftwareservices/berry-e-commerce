@@ -4,7 +4,7 @@ import React from 'react';
 import { Card, CardContent, Grid, Skeleton } from '@mui/material';
 
 // Constants
-import { gridSpacing } from '../../../../../constants';
+import { gridSpacing } from '../../../../constants';
 
 export const SkeletonPopularCard = React.memo(() => (
   <Card>

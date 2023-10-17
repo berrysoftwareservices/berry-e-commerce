@@ -21,15 +21,15 @@ import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutl
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 
 // Custom Components
-import { MainCard } from '../../MainCard/MainCard';
-import { SkeletonPopularCard } from './Skeleton/SkeletonPopularCard';
 import { BajajAreaChartCard } from '../BajajAreaChartCard/BajajAreaChartCard';
+import { SkeletonPopularCard } from './Skeleton/SkeletonPopularCard';
+import { MainCard } from '../../MainCard/MainCard';
 
-// Utils
-import { CardProps } from '../../../../utils/Interfaces/Card.Interface';
+// Typescript
+import { CardProps } from '../../../utils/Interfaces/Card.Interface';
 
 // Constants
-import { gridSpacing } from '../../../../constants';
+import { gridSpacing } from '../../../constants';
 
 export const PopularCard: FC<CardProps> = React.memo(({ isLoading }) => {
   const theme = useTheme();

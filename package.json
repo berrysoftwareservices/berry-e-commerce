@@ -19,14 +19,17 @@
     "pre-commit-lint": "yarn check-types && yarn lint-staged"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.6",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^3.3.1",
     "@mui/icons-material": "^5.14.6",
+    "@mui/lab": "^5.0.0-alpha.148",
     "@mui/material": "^5.14.6",
     "@react-hook/window-size": "^3.1.1",
     "@tabler/icons-react": "^2.30.0",
     "apexcharts": "^3.42.0",
+    "aws-amplify": "^5.3.11",
     "material-ui-popup-state": "^5.0.9",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",

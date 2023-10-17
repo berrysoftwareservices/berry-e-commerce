@@ -1,30 +1,24 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-// material-ui
+// Material UI
 import { useTheme } from '@mui/material/styles';
 import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
-import { LoginForm } from './components/LoginForm';
-import { AuthCardWrapper } from '../../components/Cards/AuthCardWrapper/AuthCardWrapper';
-import { Logo } from '../../components/Logo/Logo';
-import { LoginFooter } from './components/LoginFooter';
 
-// // project imports
-// import AuthWrapper1 from '../AuthWrapper1';
-// import AuthCardWrapper from '../AuthCardWrapper';
-// import AuthLogin from '../auth-forms/AuthLogin';
-// import Logo from 'ui-component/Logo';
-// import AuthFooter from 'ui-component/cards/AuthFooter';
+// Custom Components
+import { AuthCardWrapper } from '../../../commons/components/Cards/AuthCardWrapper/AuthCardWrapper';
+import { AuthFooter } from '../components/AuthFooter/AuthFooter';
+import { LoginForm } from './components/LoginForm/LoginForm';
+import { Logo } from '../../../commons/components/Logo/Logo';
 
-// assets
+// Typescript
+import { LoginProps } from '../../../commons/utils/Interfaces/Auth.Interface';
 
-// ================================|| AUTH3 - LOGIN ||================================ //
-export const Login = React.memo(() => {
+export const Login: FC<LoginProps> = React.memo(({ intendedRoute, loadingUserIsLogged }) => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    // <AuthWrapper1>
     <Stack
       sx={{
         backgroundColor: theme.palette.primary.light,
@@ -36,7 +30,7 @@ export const Login = React.memo(() => {
             <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
               <AuthCardWrapper>
                 <Grid container spacing={2} alignItems="center" justifyContent="center">
-                  <Grid item sx={{ mb: 3 }}>
+                  <Grid item sx={{ mb: 1 }}>
                     <Link to="#">
                       <Logo />
                     </Link>
@@ -65,19 +59,14 @@ export const Login = React.memo(() => {
                     </Grid>
                   </Grid>
                   <Grid item xs={12}>
-                    <LoginForm />
+                    <LoginForm intendedRoute={intendedRoute} loadingUserIsLogged={loadingUserIsLogged} />
                   </Grid>
                   <Grid item xs={12}>
                     <Divider />
                   </Grid>
                   <Grid item xs={12}>
                     <Grid item container direction="column" alignItems="center" xs={12}>
-                      <Typography
-                        component={Link}
-                        to="/pages/register/register3"
-                        variant="subtitle1"
-                        sx={{ textDecoration: 'none' }}
-                      >
+                      <Typography component={Link} to="/register" variant="subtitle1" sx={{ textDecoration: 'none' }}>
                         Don&apos;t have an account?
                       </Typography>
                     </Grid>
@@ -88,10 +77,9 @@ export const Login = React.memo(() => {
           </Grid>
         </Grid>
         <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
-          <LoginFooter />
+          <AuthFooter />
         </Grid>
       </Grid>
     </Stack>
-    // </AuthWrapper1>
   );
 });

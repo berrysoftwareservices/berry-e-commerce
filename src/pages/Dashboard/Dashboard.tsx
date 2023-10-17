@@ -12,7 +12,7 @@ import { TotalGrowthBarChart } from '../../commons/components/TotalGrowthBarChar
 import { PopularCard } from '../../commons/components/Cards/PopularCard/PopularCard';
 
 // Constants
-import { gridSpacing } from '../../constants';
+import { gridSpacing } from '../../commons/constants';
 
 export const Dashboard = React.memo(() => {
   const [isLoading, setLoading] = useState(true);

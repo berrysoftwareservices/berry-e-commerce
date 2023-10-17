@@ -16,8 +16,8 @@ import { useGeneralCustomizationStore } from '../../../../../../../../stores/use
 // assets
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
 
-// Utils
-import { Item } from '../../../../../../../../utils/Types/Sidebar.types';
+// Typescript
+import { Item } from '../../../../../../../utils/Types/Sidebar.types';
 
 interface NavCollapseProps {
   menu: Item;

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import React, { forwardRef, FC } from 'react';
+import React, { FC, forwardRef } from 'react';
 
 // Material UI
 import { Card, CardContent, CardHeader, Divider, Typography, useTheme } from '@mui/material';

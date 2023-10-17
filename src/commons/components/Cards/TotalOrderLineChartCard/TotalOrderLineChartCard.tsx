@@ -10,10 +10,12 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 // Custom Components
 import { MainCard } from '../../MainCard/MainCard';
 import { SkeletonEarningCard as SkeletonTotalOrderLineChartCard } from '../EarningCard/Skeleton/SkeletonEarningCard';
-import { ChartDataMonth, ChartDataYear } from '../../../../constants';
 
-// Utils
-import { CardProps } from '../../../../utils/Interfaces/Card.Interface';
+// Constants
+import { ChartDataMonth, ChartDataYear } from '../../../constants';
+
+// Typescript
+import { CardProps } from '../../../utils/Interfaces/Card.Interface';
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: theme.palette.primary.dark,

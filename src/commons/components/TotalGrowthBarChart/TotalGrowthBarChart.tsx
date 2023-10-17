@@ -10,11 +10,11 @@ import { Grid, MenuItem, TextField, Typography, useTheme } from '@mui/material';
 import { MainCard } from '../MainCard/MainCard';
 import { SkeletonTotalGrowthBarChart } from './Skeleton/SkeletonTotalGrowthBarChart';
 
-// Utils
-import { CardProps } from '../../../utils/Interfaces/Card.Interface';
+// Typescript
+import { CardProps } from '../../utils/Interfaces/Card.Interface';
 
 // Constants
-import { ChartDataBar, gridSpacing } from '../../../constants';
+import { ChartDataBar, gridSpacing } from '../../constants';
 
 const status = [
   {

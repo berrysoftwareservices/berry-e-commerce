@@ -8,8 +8,8 @@ import { Divider, List, Typography, useTheme } from '@mui/material';
 import { NavCollapse } from '../NavCollapse/NavCollapse';
 import { NavItem } from '../NavItem/NavItem';
 
-// Utils
-import { Item } from '../../../../../../../../utils/Types/Sidebar.types';
+// Typescript
+import { Item } from '../../../../../../../utils/Types/Sidebar.types';
 
 interface NavGroupProps {
   item: Item;

@@ -1,10 +1,8 @@
 import { FC } from 'react';
 
-// material-ui
+// Material UI
 import { Box } from '@mui/material';
 import { MainCard } from '../../MainCard/MainCard';
-
-// ==============================|| AUTHENTICATION CARD WRAPPER ||============================== //
 
 interface AuthCardProps {
   children?: JSX.Element;

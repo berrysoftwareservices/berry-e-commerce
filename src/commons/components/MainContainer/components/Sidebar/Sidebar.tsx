@@ -10,7 +10,7 @@ import { MenuList } from './components/MenuList/MenuList';
 // import { MenuCard } from './components/MenuCard/MenuCard';
 
 // Constants
-import { drawerWidth } from '../../../../../constants';
+import { drawerWidth } from '../../../../constants';
 
 interface SideBarProps {
   drawerOpen: boolean;

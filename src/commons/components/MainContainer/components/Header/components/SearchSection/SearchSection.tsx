@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import React, { useState, FC } from 'react';
+import React, { FC, useState } from 'react';
 import PopupState, { bindPopper, bindToggle } from 'material-ui-popup-state';
 
 // Material UI

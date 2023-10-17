@@ -26,7 +26,7 @@ import { SubCard } from '../../../SubCard/SubCard';
 import { useGeneralCustomizationStore } from '../../../../../stores/useGeneralCustomizationStore';
 
 // Constants
-import { gridSpacing } from '../../../../../constants';
+import { gridSpacing } from '../../../../constants';
 
 function valueText(value: number) {
   return `${value}px`;

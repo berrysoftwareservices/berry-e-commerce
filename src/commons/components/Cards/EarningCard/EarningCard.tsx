@@ -15,7 +15,7 @@ import { MainCard } from '../../MainCard/MainCard';
 import { SkeletonEarningCard } from './Skeleton/SkeletonEarningCard';
 
 // Utils
-import { CardProps } from '../../../../utils/Interfaces/Card.Interface';
+import { CardProps } from '../../../utils/Interfaces/Card.Interface';
 
 // assets
 import EarningIcon from '../../../../assets/images/icons/earning.svg';

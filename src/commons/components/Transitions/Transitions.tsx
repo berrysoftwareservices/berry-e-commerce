@@ -1,4 +1,4 @@
-import React, { forwardRef, FC } from 'react';
+import React, { FC, forwardRef } from 'react';
 
 // Material UI
 import { Collapse, Fade, Box, Grow, Slide, Zoom, SxProps, Theme } from '@mui/material';

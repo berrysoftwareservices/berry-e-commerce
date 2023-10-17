@@ -15,7 +15,7 @@ export const pages = {
       icon: VpnKeyOutlinedIcon,
       children: [
         {
-          id: 'login3',
+          id: 'login',
           title: 'Login',
           type: 'item',
           icon: LockOpenOutlinedIcon,
@@ -23,11 +23,11 @@ export const pages = {
           target: true,
         },
         {
-          id: 'register3',
+          id: 'register',
           title: 'Register',
           type: 'item',
           icon: ManageAccountsIcon,
-          url: '/pages/register/register3',
+          url: '/register',
           target: true,
         },
       ],

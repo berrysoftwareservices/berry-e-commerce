@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { shallow } from 'zustand/shallow';
+import { Auth } from 'aws-amplify';
+import { useNavigate } from 'react-router-dom';
 
 // Material UI
 import {
@@ -35,6 +37,9 @@ import PersonIcon from '@mui/icons-material/Person';
 import { Transitions } from '../../../../../Transitions/Transitions';
 import { UpgradePlanCard } from './components/UpgradePlanCard';
 
+// Custom Hooks
+import { useAuthentication } from '../../../../../../hooks/useAuthentication.hook';
+
 // Stores
 import { useGeneralCustomizationStore } from '../../../../../../../stores/useGeneralCustomizationStore';
 import { useGeneralSettingsStore } from '../../../../../../../stores/useGeneralSettingsStore';
@@ -43,13 +48,14 @@ import { useGeneralSettingsStore } from '../../../../../../../stores/useGeneralS
 import UserImage from '../../../../../../../assets/images/users/user-round.svg';
 
 export const ProfileSection = React.memo(() => {
-  const [searchTextInput, setSearchTextInput] = useState('');
-  const anchorRef = useRef(null);
-
   const theme = useTheme();
   const matchesXs = useMediaQuery(theme.breakpoints.down('md'));
-
+  const [searchTextInput, setSearchTextInput] = useState('');
+  const navigate = useNavigate();
+  const anchorRef = useRef(null);
+  const { removeLoggedUserData } = useAuthentication();
   const { borderRadius } = useGeneralCustomizationStore((state) => ({ borderRadius: state.borderRadius }));
+
   const { openProfileSettings, setOpenProfileSettings } = useGeneralSettingsStore(
     (state) => ({
       openProfileSettings: state.openProfileSettings,
@@ -57,6 +63,17 @@ export const ProfileSection = React.memo(() => {
     }),
     shallow,
   );
+
+  const handleLogOut = useCallback(async () => {
+    try {
+      await Auth.signOut();
+      removeLoggedUserData();
+      navigate('/login');
+    } catch (err) {
+      // TODO: Send a notification here
+      // enqueueSnackbar(`Error!! ${err.message}`, { variant: 'error' });
+    }
+  }, [removeLoggedUserData, navigate]);
 
   return (
     <Box>
@@ -258,7 +275,10 @@ export const ProfileSection = React.memo(() => {
                           <ListItemIcon>
                             <LogoutIcon />
                           </ListItemIcon>
-                          <ListItemText primary={<Typography variant="body2">Logout</Typography>} />
+                          <ListItemText
+                            primary={<Typography variant="body2">Logout</Typography>}
+                            onClick={handleLogOut}
+                          />
                         </ListItemButton>
                       </List>
                     </Box>

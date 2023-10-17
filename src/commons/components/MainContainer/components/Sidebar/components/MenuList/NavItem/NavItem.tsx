@@ -14,8 +14,8 @@ import { useGeneralCustomizationStore } from '../../../../../../../../stores/use
 // assets
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
-// Utils
-import { Item } from '../../../../../../../../utils/Types/Sidebar.types';
+// Typescript
+import { Item } from '../../../../../../../utils/Types/Sidebar.types';
 
 interface NavItemProps {
   item: Item;

@@ -9,8 +9,8 @@ import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
 import { MainCard } from '../../../MainCard/MainCard';
 import { SkeletonTotalIncomeCard } from '../Skeleton/SkeletonTotalIncomeCard';
 
-// Utils
-import { CardProps } from '../../../../../utils/Interfaces/Card.Interface';
+// Typescript
+import { CardProps } from '../../../../utils/Interfaces/Card.Interface';
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: theme.palette.primary.dark,

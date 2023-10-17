@@ -7,7 +7,7 @@ import ApexCharts from 'apexcharts';
 import { Card, Grid, Typography, useTheme } from '@mui/material';
 
 // Constants
-import { ChartDataArea } from '../../../../constants';
+import { ChartDataArea } from '../../../constants';
 
 export const BajajAreaChartCard = React.memo(() => {
   const theme = useTheme();
