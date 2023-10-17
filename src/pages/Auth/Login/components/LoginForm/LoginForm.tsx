@@ -62,6 +62,7 @@ export const LoginForm: FC<LoginProps> = React.memo(({ intendedRoute, loadingUse
   };
 
   const onShownPassword = useCallback(() => setShowPassword(!showPassword), [showPassword]);
+  const cleanLoginError = () => setLoginError(false);
 
   const { register, handleSubmit, formState, control } = useForm<InputValues>({
     defaultValues: {
@@ -96,8 +97,6 @@ export const LoginForm: FC<LoginProps> = React.memo(({ intendedRoute, loadingUse
           navigate('/');
         }
       } catch (err) {
-        // TODO: Send a notification here
-        // enqueueSnackbar(`Error!! ${err.message}`, { variant: 'error' });
         setLoginError(true);
         setLoading(false);
       }
@@ -177,6 +176,7 @@ export const LoginForm: FC<LoginProps> = React.memo(({ intendedRoute, loadingUse
                   InputLabelProps={{ shrink: true }}
                   error={!!errors?.email?.message}
                   {...register('email')}
+                  onFocus={cleanLoginError}
                 />
                 <Typography variant="caption" color="error" pl={1}>
                   {errors?.email?.message}
@@ -197,6 +197,7 @@ export const LoginForm: FC<LoginProps> = React.memo(({ intendedRoute, loadingUse
                       error={!!errors?.password?.message}
                       size="small"
                       fullWidth
+                      onFocus={cleanLoginError}
                       InputProps={{
                         endAdornment: (
                           <InputAdornment position="end">
