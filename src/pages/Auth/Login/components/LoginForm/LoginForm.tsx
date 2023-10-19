@@ -6,19 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
 // Material UI
-import { useTheme } from '@mui/material/styles';
-import {
-  Box,
-  Button,
-  Divider,
-  Grid,
-  IconButton,
-  InputAdornment,
-  Stack,
-  TextField,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
+import { Box, IconButton, InputAdornment, Stack, TextField, Typography } from '@mui/material';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -35,9 +23,6 @@ import { UserService } from '../../../../../commons/services/users.service';
 // Typescript
 import { LoginProps } from '../../../../../commons/utils/Interfaces/Auth.Interface';
 
-// assets
-import Google from '../../../../../assets/images/icons/social-google.svg';
-
 const schema = yup.object({
   email: yup.string().email('Please enter a valid email').required('Required field'),
   password: yup.string().required('Required field'),
@@ -49,17 +34,11 @@ interface InputValues {
 }
 
 export const LoginForm: FC<LoginProps> = React.memo(({ intendedRoute, loadingUserIsLogged }) => {
-  const theme = useTheme();
-  const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
   const { setLoggedUserData } = useAuthentication();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [loginError, setLoginError] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  const googleHandler = async () => {
-    console.error('Login');
-  };
 
   const onShownPassword = useCallback(() => setShowPassword(!showPassword), [showPassword]);
   const cleanLoginError = () => setLoginError(false);
@@ -108,62 +87,6 @@ export const LoginForm: FC<LoginProps> = React.memo(({ intendedRoute, loadingUse
     <Box>
       <LoadingScreen loading={loadingUserIsLogged}>
         <>
-          <Grid container direction="column" justifyContent="center" spacing={2}>
-            <Grid item xs={12}>
-              {/* <AnimateButton> */}
-              <Button
-                disableElevation
-                fullWidth
-                onClick={googleHandler}
-                size="large"
-                variant="outlined"
-                sx={{
-                  color: 'grey.700',
-                  backgroundColor: theme.palette.grey[50],
-                  borderColor: theme.palette.grey[100],
-                }}
-              >
-                <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
-                  <img src={Google} alt="google" width={16} height={16} style={{ marginRight: matchDownSM ? 8 : 16 }} />
-                </Box>
-                Sign in with Google
-              </Button>
-              {/* </AnimateButton> */}
-            </Grid>
-            <Grid item xs={12}>
-              <Box
-                sx={{
-                  alignItems: 'center',
-                  display: 'flex',
-                }}
-              >
-                <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
-                <Button
-                  variant="outlined"
-                  sx={{
-                    cursor: 'unset',
-                    m: 2,
-                    py: 0.5,
-                    px: 7,
-                    borderColor: `${theme.palette.grey[100]} !important`,
-                    color: `${theme.palette.grey[900]}!important`,
-                    fontWeight: 500,
-                    // borderRadius: `${customization.borderRadius}px`
-                  }}
-                  disableRipple
-                  disabled
-                >
-                  OR
-                </Button>
-                <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
-              </Box>
-            </Grid>
-            <Grid item xs={12} container alignItems="center" justifyContent="center">
-              <Box sx={{ mb: 2 }}>
-                <Typography variant="subtitle1">Sign in with Email address</Typography>
-              </Box>
-            </Grid>
-          </Grid>
           <Stack>
             <form onSubmit={handleSubmit((values) => onSubmit(values))}>
               <Stack pt={2} pb={2}>
@@ -225,7 +148,7 @@ export const LoginForm: FC<LoginProps> = React.memo(({ intendedRoute, loadingUse
                   </Typography>
                 </Stack>
               ) : null}
-              <Stack direction="row" pt={2} pb={2} justifyContent="flex-end">
+              <Stack direction="row" pb={2} justifyContent="flex-end">
                 <Typography variant="subtitle1" color="secondary" sx={{ textDecoration: 'none', cursor: 'pointer' }}>
                   Forgot Password?
                 </Typography>

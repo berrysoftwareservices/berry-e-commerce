@@ -49,7 +49,7 @@ export const Register = React.memo(() => {
                           justifyContent="center"
                         >
                           <Grid item>
-                            <Stack alignItems="center" justifyContent="center" spacing={1}>
+                            <Stack alignItems="center" justifyContent="center">
                               <Typography
                                 color={theme.palette.secondary.main}
                                 gutterBottom
@@ -68,6 +68,13 @@ export const Register = React.memo(() => {
                   )}
                   <Grid item xs={12}>
                     <Divider />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Grid item container direction="column" alignItems="center" xs={12}>
+                      <Typography component={Link} to="/login" variant="subtitle1" sx={{ textDecoration: 'none' }}>
+                        Already have an account?
+                      </Typography>
+                    </Grid>
                   </Grid>
                 </Grid>
               </AuthCardWrapper>
